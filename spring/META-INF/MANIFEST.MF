@@ -1,0 +1,7 @@
+Bundle-Version: 1.0
+Bundle-SymbolicName: org.springframework.osgi.spring-osgi-bundle-archetype
+Bundle-Name: org.springframework.osgi.spring-osgi-bundle-archetype
+Export-Package: org.springframework.osgi;version:=1.0-SNAPSHOT
+TODO-Import-Package: <your-imports-here>
+
+
