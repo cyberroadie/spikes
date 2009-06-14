@@ -9,12 +9,11 @@ public class ClassCounterTest {
 
     @Test
     public void count() {
-        ClassCounter classCounter1 = new ClassCounter();
-        System.out.println(classCounter1.getCount());
+        ClassCounter classCounter1 = ClassCounter.createClassCounter();
 
-        ClassCounter classCounter2 = new ClassCounter();
+        ClassCounter classCounter2 = ClassCounter.createClassCounter();
 
-        // Counter is the same for both
+        // Counter is the same for both because it's a class variable
         assertEquals(classCounter2.getCount(), classCounter1.getCount());
         
     }
