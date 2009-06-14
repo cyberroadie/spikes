@@ -4,11 +4,11 @@
  */
 public class ClassCounter {
 
-    static int count = 0;
+    private static int count = 0;
 
     private ClassCounter() {
-        System.out.println("Hello world! (" + count + ")");
         count++;
+        System.out.println("Hello world! (" + count + ")");
     }
 
     public static ClassCounter createClassCounter() {
