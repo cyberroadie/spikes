@@ -7,20 +7,28 @@ package net.transformatorhuis.chess.pieces;
 public class Pawn {
 
     private String color;
-    static final String WHITE = "white";
-    static final String BLACK = "black";
+    private String printableCharacter;
+    public static final String WHITE = "white";
+    public static final String BLACK = "black";
+    public static final String BLACK_CHAR = "P";
+    public static final String WHITE_CHAR = "p";
 
-    public Pawn(String color) {
+    public Pawn(String color, String printableChar) {
         this.color = color;
+        this.printableCharacter = printableChar;
     }
 
     public Pawn() {
-        this(Pawn.WHITE);
+        this(Pawn.WHITE, Pawn.WHITE_CHAR);
     }
 
 
     public String getColor() {
         return color;
     }
-    
+
+    public String toString() {
+        return printableCharacter;
+    }
+
 }

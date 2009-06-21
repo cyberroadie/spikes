@@ -15,11 +15,13 @@ public class PawnTest {
     @Test
     public void testCreate() {
 
-        Pawn pawn = new Pawn(Pawn.WHITE);
-        assertEquals(white, pawn.getColor());
+        Pawn whitePawn = new Pawn(Pawn.WHITE, Pawn.WHITE_CHAR);
+        assertEquals(white, whitePawn.getColor());
+        assertEquals("p", whitePawn.toString());
 
-        Pawn pawn2 = new Pawn(Pawn.BLACK);
-        assertEquals(black, pawn2.getColor());
+        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_CHAR);
+        assertEquals(black, blackPawn.getColor());
+        assertEquals("P", blackPawn.toString());
 
     }
 

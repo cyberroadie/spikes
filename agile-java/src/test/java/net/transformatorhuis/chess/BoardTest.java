@@ -1,6 +1,5 @@
 package net.transformatorhuis.chess;
 
-import net.transformatorhuis.chess.pieces.Pawn;
 import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.Assert.*;
@@ -19,19 +18,20 @@ public class BoardTest {
     }
     @Test
     public void testCreate() {
-        Board board = new Board();
-        assertEquals(0, board.getNoOfPieces());
+        assertEquals(16, board.getNoOfPieces());
+        System.out.println(board.print());
+        assertEquals(
+                "........\n" +
+                "PPPPPPPP\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "pppppppp\n" +
+                "........\n",
+                board.print()
+                );
+                
     }
 
-    @Test
-    public void testAddPawn() {
-        Board board = new Board();
-        assertEquals(0, board.getNoOfPieces());
-        Pawn pawn = new Pawn();
-        board.addPawn(pawn);
-        assertEquals(1, board.getNoOfPieces());
-        assertTrue(board.getPieces().contains(pawn));
-
-
-    }
 }
