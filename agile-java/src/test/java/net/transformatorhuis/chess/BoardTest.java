@@ -22,12 +22,12 @@ public class BoardTest {
         System.out.println(board.print());
         assertEquals(
                 "........\n" +
-                "PPPPPPPP\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
                 "pppppppp\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "PPPPPPPP\n" +
                 "........\n",
                 board.print()
                 );
