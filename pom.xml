@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009. Olivier Van Acker.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.transformatorhuis</groupId>
+    <artifactId>spikes</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1</version>
+    <name>Transformatorhuis Spikes</name>
+    <url>http://www.transformatorhuis.net</url>
+
+    <prerequisites>
+        <maven>2.0.9</maven>
+    </prerequisites>
+
+    <licenses>
+        <license>
+            <name></name>
+            <url></url>
+        </license>
+    </licenses>
+
+    <ciManagement>
+        <url>http://www.cyberroadie.org/hudson</url>
+    </ciManagement>
+
+    <scm>
+        <connection></connection>
+        <developerConnection></developerConnection>
+        <url></url>
+    </scm>
+
+    <issueManagement>
+        <system></system>
+        <url></url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>cyberroadie</id>
+            <name>Olivier Van Acker</name>
+            <email>cyberroadie@gmail.com</email>
+            <timezone></timezone>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>agile-java</module>
+        <module>class-variables</module>
+        <module>comparable</module>
+        <module>junit-examples</module>
+        <module>polymorphism</module>
+        <module>spring</module>
+    </modules>
+
+</project>
