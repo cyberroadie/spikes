@@ -49,7 +49,7 @@ class Board {
     }
 
     private List<Piece> createWhitePawnRow() {
-        List<Piece> pawnList = new ArrayList();
+        List<Piece> pawnList = new ArrayList<Piece>();
         for (int i = 0; i < 8; i++) {
             pawnList.add(Piece.createWhitePiece(Piece.Type.PAWN));
             noOfPieces++;
@@ -58,7 +58,7 @@ class Board {
     }
 
     private List<Piece> createBlackPawnRow() {
-        List<Piece> pawnList = new ArrayList();
+        List<Piece> pawnList = new ArrayList<Piece>();
         for (int i = 0; i < 8; i++) {
             pawnList.add(Piece.createBlackPiece(Piece.Type.PAWN));
             noOfPieces++;
@@ -67,10 +67,49 @@ class Board {
     }
 
     private List<Piece> createEmptyRow() {
-        List<Piece> emptyList = new ArrayList();
+        List<Piece> emptyList = new ArrayList<Piece>();
         for (int i = 0; i < 8; i++) {
             emptyList.add(null);
         }
         return emptyList;
     }
+
+    public int getNoOfBlackPieces(Piece.Type type) {
+        int noOfBlackPieces = 0;
+        for (List<Piece> rank : board) {
+            for (Piece piece : rank) {
+                if((piece != null) && (piece.getType() == type) && piece.isBlack()) {
+                    noOfBlackPieces++;
+                }
+            }
+        }
+        return noOfBlackPieces;
+    }
+
+    public int getNoOfWhitePieces(Piece.Type type) {
+        int noOfBlackPieces = 0;
+        for (List<Piece> rank : board) {
+            for (Piece piece : rank) {
+                if((piece != null) && (piece.getType() == type) && piece.isWhite()) {
+                    noOfBlackPieces++;
+                }
+            }
+        }
+        return noOfBlackPieces;
+    }
+
+    public Piece getPiece(String location) {
+        // Conversion to column
+        int file = Character.getNumericValue(location.charAt(0)) - 10;
+        int rank = Integer.parseInt(location.substring(1)) - 1;
+
+        Piece piece = (Piece) board.get(rank).get(file);
+        return piece;
+
+    }
+
+    private List getRank(int index) {
+        return board.get(index);
+    }
+
 }

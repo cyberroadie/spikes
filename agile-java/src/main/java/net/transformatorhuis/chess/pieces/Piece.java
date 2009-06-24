@@ -56,7 +56,7 @@ public class Piece {
         return null;
     }
 
-    public static Piece createBlackPiece(Piece.Type type) {
+    public static Piece createBlackPiece(Type type) {
         switch(type) {
             case PAWN : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.PAWN_REPRESENTATION));
             case BISHOP : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.BISHOP_REPRESENTATION));
