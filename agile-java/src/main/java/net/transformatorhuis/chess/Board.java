@@ -19,12 +19,14 @@ class Board {
 
     public void initialize() {
         board.add(0, createEmptyRow());
-        board.add(1, createWhitePawnRow());
+        board.add(0, createEmptyRow());
+//        board.add(1, createWhitePawnRow());
         board.add(2, createEmptyRow());
         board.add(3, createEmptyRow());
         board.add(4, createEmptyRow());
         board.add(5, createEmptyRow());
-        board.add(6, createBlackPawnRow());
+        board.add(5, createEmptyRow());
+//        board.add(6, createBlackPawnRow());
         board.add(7, createEmptyRow());
     }
 
@@ -101,11 +103,19 @@ class Board {
     public Piece getPiece(String location) {
         // Conversion to column
         int file = Character.getNumericValue(location.charAt(0)) - 10;
-        int rank = Integer.parseInt(location.substring(1)) - 1;
+        int rank = Math.abs(Integer.parseInt(location.substring(1)) - 1 - 7);
 
         Piece piece = (Piece) board.get(rank).get(file);
         return piece;
 
+    }
+
+    public void setPiece(Piece piece, String location) {
+        // Conversion to column
+        int file = Character.getNumericValue(location.charAt(0)) - 10;
+        int rank = Math.abs(Integer.parseInt(location.substring(1)) - 1 - 7);
+
+        board.get(rank).set(file, piece);
     }
 
     private List getRank(int index) {
