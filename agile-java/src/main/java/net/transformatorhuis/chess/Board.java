@@ -3,6 +3,7 @@ package net.transformatorhuis.chess;
 import net.transformatorhuis.chess.pieces.Piece;
 import java.util.ArrayList;
 import java.util.List;
+import net.transformatorhuis.chess.pieces.Piece.Type;
 
 /**
  *
@@ -122,4 +123,40 @@ class Board {
         return board.get(index);
     }
 
+    public float getBlackStrength() {
+        float strength = 0;
+        for (List<Piece> rank : board) {
+            for (Piece piece : rank) {
+                if(piece != null) {
+                    if(piece.isBlack())
+                        strength = strength + getStrengthOfType(piece.getType());
+                }
+            }
+        }
+        return strength;
+    }
+
+    public float getWhiteStrength() {
+        float strength = 0;
+        for (List<Piece> rank : board) {
+            for (Piece piece : rank) {
+                if(piece != null) {
+                    if(piece.isWhite())
+                        strength = strength + getStrengthOfType(piece.getType());
+                }
+            }
+        }
+        return strength;
+    }
+
+    private float getStrengthOfType(Type type) {
+        switch(type) {
+            case PAWN : return 1;
+            case BISHOP: return 3;
+            case KNIGHT: return 2.5f;
+            case QUEEN: return 9;
+            case ROOK: return 5;
+        }
+        return 0;
+    }
 }
