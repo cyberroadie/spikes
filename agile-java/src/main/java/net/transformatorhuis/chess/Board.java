@@ -48,24 +48,6 @@ class Board {
         return boardString.toString();
     }
 
-    private List<Piece> createWhitePawnRow() {
-        List<Piece> pawnList = new ArrayList<Piece>();
-        for (int i = 0; i < 8; i++) {
-            pawnList.add(Piece.createWhitePiece(Piece.Type.PAWN));
-            noOfPieces++;
-        }
-        return pawnList;
-    }
-
-    private List<Piece> createBlackPawnRow() {
-        List<Piece> pawnList = new ArrayList<Piece>();
-        for (int i = 0; i < 8; i++) {
-            pawnList.add(Piece.createBlackPiece(Piece.Type.PAWN));
-            noOfPieces++;
-        }
-        return pawnList;
-    }
-
     private List<Piece> createEmptyRow() {
         List<Piece> emptyList = new ArrayList<Piece>();
         for (int i = 0; i < 8; i++) {
