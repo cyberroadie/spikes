@@ -4,13 +4,18 @@ package net.transformatorhuis.chess.pieces;
  * @author Olivier Van Acker
  *         Date: 20-Jun-2009
  */
-public class Piece {
+public class Piece implements Comparable<Piece> {
 
     private Piece.Color color;
     private Piece.Type type;
     private char representation;
+    private float strength;
 
-    private String printableCharacter;
+    @Override
+    public int compareTo(Piece that) {
+        return Float.valueOf(this.getStrength()).compareTo(that.getStrength());
+    }
+
 
     private enum Color { WHITE, BLACK };
     public enum Type {PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING };
@@ -66,6 +71,26 @@ public class Piece {
             case ROOK : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.ROOK_REPRESENTATION));
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if(!(object instanceof Piece))
+            return false;
+        Piece piece = (Piece) object;
+        if(piece.color == this.color &&
+                piece.representation == this.representation &&
+                piece.type == this.type)
+            return true;
+        return false;
+    }
+
+    public float getStrength() {
+        return strength;
+    }
+
+    public void setStrength(float strength) {
+        this.strength = strength;
     }
 
 }

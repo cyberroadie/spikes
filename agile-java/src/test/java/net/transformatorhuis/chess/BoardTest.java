@@ -1,9 +1,11 @@
 package net.transformatorhuis.chess;
 
+import java.util.List;
 import net.transformatorhuis.chess.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.Assert.*;
+import static net.transformatorhuis.chess.pieces.Piece.Type.*;
 
 /**
  *
@@ -12,107 +14,10 @@ import static junit.framework.Assert.*;
 public class BoardTest {
 
     Board board;
-
-    @Before
-    public void createBoard() {
-        board = new Board();
-    }
-
+   
     @Test
     public void testCreate() {
-        assertEquals(0, board.getNoOfPieces());
-        System.out.println(board.print());
-        assertEquals(
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n",
-                board.print()
-                );
-                
-    }
-
-    @Test
-    public void testCount() {
-        assertEquals(0, board.getNoOfBlackPieces(Piece.Type.PAWN));
-        assertEquals(0, board.getNoOfWhitePieces(Piece.Type.PAWN));
-    }
-
-    @Test
-    public void testGetPiece() {
-//        Piece whitePawn = board.getPiece("a2");
-//        assertEquals(Piece.Type.PAWN, whitePawn.getType());
-//        assertTrue(whitePawn.isWhite());
-//
-//        Piece blackPawn = board.getPiece("f7");
-//        assertEquals(Piece.Type.PAWN, blackPawn.getType());
-//        assertTrue(blackPawn.isBlack());
-
-    }
-
-    @Test
-    public void setPiece() {
-        Piece blackKing = Piece.createBlackPiece(Piece.Type.KING);
-        Piece blackRook = Piece.createBlackPiece(Piece.Type.ROOK);
-        Piece whiteKing = Piece.createWhitePiece(Piece.Type.KING);
-
-        board.setPiece(whiteKing, "c4");
-        board.setPiece(blackKing, "b6");
-        board.setPiece(blackRook, "b5");
-
-        System.out.println(board.print());
-        assertEquals(
-                "........\n" +
-                "........\n" +
-                ".K......\n" +
-                ".R......\n" +
-                "..k.....\n" +
-                "........\n" +
-                "........\n" +
-                "........\n",
-                board.print()
-                );
-    }
-
-
-    @Test
-    public void testRelativeStrength() {
-
-        board.setPiece(Piece.createBlackPiece(Piece.Type.KING), "b8");
-        board.setPiece(Piece.createBlackPiece(Piece.Type.ROOK), "c8");
-        assertEquals(5f, board.getBlackStrength());
-        assertEquals(0f, board.getWhiteStrength());
-        board.setPiece(Piece.createBlackPiece(Piece.Type.PAWN), "a7");
-        board.setPiece(Piece.createBlackPiece(Piece.Type.PAWN), "c7");
-        board.setPiece(Piece.createBlackPiece(Piece.Type.BISHOP), "d7");
-        assertEquals(10f, board.getBlackStrength());
-        assertEquals(0f, board.getWhiteStrength());
-        board.setPiece(Piece.createBlackPiece(Piece.Type.PAWN), "b6");
-        board.setPiece(Piece.createBlackPiece(Piece.Type.QUEEN), "e6");
-        assertEquals(20f, board.getBlackStrength());
-        assertEquals(0f, board.getWhiteStrength());
-        board.setPiece(Piece.createWhitePiece(Piece.Type.KNIGHT), "f4");
-        board.setPiece(Piece.createWhitePiece(Piece.Type.QUEEN), "g4");
-        assertEquals(20f, board.getBlackStrength());
-        assertEquals(11.5f, board.getWhiteStrength());
-        board.setPiece(Piece.createWhitePiece(Piece.Type.PAWN), "f3");
-        board.setPiece(Piece.createWhitePiece(Piece.Type.PAWN), "h3");
-        assertEquals(20f, board.getBlackStrength());
-        assertEquals(13.5f, board.getWhiteStrength());
-        board.setPiece(Piece.createWhitePiece(Piece.Type.PAWN), "f2");
-        board.setPiece(Piece.createWhitePiece(Piece.Type.PAWN), "g2");
-        assertEquals(20f, board.getBlackStrength());
-//        assertEquals(14.5f, board.getWhiteStrength());
-        board.setPiece(Piece.createWhitePiece(Piece.Type.ROOK), "e1");
-        board.setPiece(Piece.createWhitePiece(Piece.Type.KING), "f1");
-        assertEquals(20f, board.getBlackStrength());
-//        assertEquals(19.5f, board.getWhiteStrength());
-
-
+        assertEquals(15, board.getNoOfPieces());
         System.out.println(board.print());
         assertEquals(
                 ".KR.....\n" +
@@ -125,10 +30,70 @@ public class BoardTest {
                 "....rk..\n",
                 board.print()
                 );
+                
+    }
 
-//        assertEquals(20f, board.getBlackStrength());
-//        assertEquals(19.5f, board.getWhiteStrength());
+    @Test
+    public void testCount() {
+        assertEquals(3, board.getNoOfBlackPieces(PAWN));
+        assertEquals(4, board.getNoOfWhitePieces(PAWN));
+    }
 
+    @Test
+    public void testCountWhenReplacingPiece() {
+        board.setPiece(Piece.createBlackPiece(PAWN), "e6");
+        assertEquals(15, board.getNoOfPieces());
+    }
+
+    @Test
+    public void testGetPiece() {
+        Piece whitePawn = board.getPiece("f3");
+        assertEquals(PAWN, whitePawn.getType());
+        assertTrue(whitePawn.isWhite());
+
+        Piece blackPawn = board.getPiece("c7");
+        assertEquals(PAWN, blackPawn.getType());
+        assertTrue(blackPawn.isBlack());
+
+    }
+
+    @Test
+    public void testRelativeStrength() {
+        assertEquals(20f, board.getBlackStrength());
+        assertEquals(19.5f, board.getWhiteStrength());
+    }
+
+    @Test
+    public void testSorting() {
+        board.getBlackStrength();
+        board.getWhiteStrength();
+        List<Piece> blackStrengthList = board.getBlackStrengthList();
+        assertEquals(KING, blackStrengthList.get(0).getType());
+        assertEquals(QUEEN, blackStrengthList.get(blackStrengthList.size() - 1).getType());
+        List<Piece> whiteStrengthList = board.getWhiteStrengthList();
+        assertEquals(KING, whiteStrengthList.get(0).getType());
+        assertEquals(QUEEN, whiteStrengthList.get(whiteStrengthList.size() -  1).getType());
+        
+    }
+
+    @Before
+    public void createBoard() {
+        board = new Board();
+        board.setPiece(Piece.createBlackPiece(KING), "b8");
+        board.setPiece(Piece.createBlackPiece(ROOK), "c8");
+        board.setPiece(Piece.createBlackPiece(PAWN), "a7");
+        board.setPiece(Piece.createBlackPiece(PAWN), "c7");
+        board.setPiece(Piece.createBlackPiece(BISHOP), "d7");
+        board.setPiece(Piece.createBlackPiece(PAWN), "b6");
+        board.setPiece(Piece.createBlackPiece(QUEEN), "e6");
+        board.setPiece(Piece.createWhitePiece(KNIGHT), "f4");
+        board.setPiece(Piece.createWhitePiece(QUEEN), "g4");
+        board.setPiece(Piece.createWhitePiece(PAWN), "f3");
+        board.setPiece(Piece.createWhitePiece(PAWN), "h3");
+        board.setPiece(Piece.createWhitePiece(PAWN), "f2");
+        board.setPiece(Piece.createWhitePiece(PAWN), "g2");
+        board.setPiece(Piece.createWhitePiece(ROOK), "e1");
+        board.setPiece(Piece.createWhitePiece(KING), "f1");
     }
 
 

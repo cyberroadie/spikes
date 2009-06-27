@@ -2,6 +2,7 @@ package net.transformatorhuis.chess.pieces;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static net.transformatorhuis.chess.pieces.Piece.Type.*;
 
 /**
  * @author Olivier Van Acker
@@ -12,39 +13,39 @@ public class PieceTest {
     @Test
     public void testCreate() {
         verifyCreation(
-                Piece.createWhitePiece(Piece.Type.PAWN),
-                Piece.createBlackPiece(Piece.Type.PAWN),
-                Piece.Type.PAWN,
+                Piece.createWhitePiece(PAWN),
+                Piece.createBlackPiece(PAWN),
+                PAWN,
                 Piece.PAWN_REPRESENTATION
                 );
         verifyCreation(
-                Piece.createWhitePiece(Piece.Type.BISHOP),
-                Piece.createBlackPiece(Piece.Type.BISHOP),
-                Piece.Type.BISHOP,
+                Piece.createWhitePiece(BISHOP),
+                Piece.createBlackPiece(BISHOP),
+                BISHOP,
                 Piece.BISHOP_REPRESENTATION
                 );
         verifyCreation(
-                Piece.createWhitePiece(Piece.Type.KING),
-                Piece.createBlackPiece(Piece.Type.KING),
-                Piece.Type.KING,
+                Piece.createWhitePiece(KING),
+                Piece.createBlackPiece(KING),
+                KING,
                 Piece.KING_REPRESENTATION
                 );
         verifyCreation(
-                Piece.createWhitePiece(Piece.Type.KNIGHT),
-                Piece.createBlackPiece(Piece.Type.KNIGHT),
-                Piece.Type.KNIGHT,
+                Piece.createWhitePiece(KNIGHT),
+                Piece.createBlackPiece(KNIGHT),
+                KNIGHT,
                 Piece.KNIGHT_REPRESENTATION
                 );
         verifyCreation(
-                Piece.createWhitePiece(Piece.Type.QUEEN),
-                Piece.createBlackPiece(Piece.Type.QUEEN),
-                Piece.Type.QUEEN,
+                Piece.createWhitePiece(QUEEN),
+                Piece.createBlackPiece(QUEEN),
+                QUEEN,
                 Piece.QUEEN_REPRESENTATION
                 );
         verifyCreation(
-                Piece.createWhitePiece(Piece.Type.ROOK),
-                Piece.createBlackPiece(Piece.Type.ROOK),
-                Piece.Type.ROOK,
+                Piece.createWhitePiece(ROOK),
+                Piece.createBlackPiece(ROOK),
+                ROOK,
                 Piece.ROOK_REPRESENTATION
                 );
     }
