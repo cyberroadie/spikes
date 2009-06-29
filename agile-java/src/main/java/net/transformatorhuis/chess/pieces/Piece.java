@@ -8,7 +8,6 @@ public class Piece implements Comparable<Piece> {
 
     private Piece.Color color;
     private Piece.Type type;
-    private char representation;
     private float strength;
 
     @Override
@@ -16,9 +15,7 @@ public class Piece implements Comparable<Piece> {
         return Float.valueOf(this.getStrength()).compareTo(that.getStrength());
     }
 
-
     private enum Color { WHITE, BLACK };
-    public enum Type {PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING };
 
     public static final char PAWN_REPRESENTATION = 'p';
     public static final char ROOK_REPRESENTATION = 'r';
@@ -27,14 +24,35 @@ public class Piece implements Comparable<Piece> {
     public static final char QUEEN_REPRESENTATION = 'q';
     public static final char KING_REPRESENTATION = 'k';
 
-    private Piece(Piece.Type name, Piece.Color color, char representation) {
+    public enum Type {
+        PAWN(1f, PAWN_REPRESENTATION),
+        ROOK(5f, ROOK_REPRESENTATION),
+        KNIGHT(2.5f, KNIGHT_REPRESENTATION),
+        BISHOP(3f, BISHOP_REPRESENTATION),
+        QUEEN(9f, QUEEN_REPRESENTATION),
+        KING(0f, KING_REPRESENTATION);
+
+        private float strength;
+        private char presentation;
+
+        private Type(float strength, char presentation) {
+            this.strength = strength;
+            this.presentation = presentation;
+        }
+
+        public float getStrength() {
+            return strength;
+        }
+
+        public char getPresentation() {
+            return presentation;
+        }
+
+    };
+
+    private Piece(Piece.Type name, Piece.Color color) {
         this.color = color;
         this.type = name;
-        this.representation = representation;
-    }
-
-    public char getRepresentation() {
-        return representation;
     }
 
     public Type getType() {
@@ -51,24 +69,24 @@ public class Piece implements Comparable<Piece> {
 
     public static Piece createWhitePiece(Type type) {
         switch(type) {
-            case PAWN : return new Piece(type, Color.WHITE, Piece.PAWN_REPRESENTATION);
-            case BISHOP : return new Piece(type, Color.WHITE, Piece.BISHOP_REPRESENTATION);
-            case KING : return new Piece(type, Color.WHITE, Piece.KING_REPRESENTATION);
-            case KNIGHT : return new Piece(type, Color.WHITE, Piece.KNIGHT_REPRESENTATION);
-            case QUEEN : return new Piece(type, Color.WHITE, Piece.QUEEN_REPRESENTATION);
-            case ROOK : return new Piece(type, Color.WHITE, Piece.ROOK_REPRESENTATION);
+            case PAWN : return new Piece(type, Color.WHITE);
+            case BISHOP : return new Piece(type, Color.WHITE);
+            case KING : return new Piece(type, Color.WHITE);
+            case KNIGHT : return new Piece(type, Color.WHITE);
+            case QUEEN : return new Piece(type, Color.WHITE);
+            case ROOK : return new Piece(type, Color.WHITE);
         }
         return null;
     }
 
     public static Piece createBlackPiece(Type type) {
         switch(type) {
-            case PAWN : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.PAWN_REPRESENTATION));
-            case BISHOP : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.BISHOP_REPRESENTATION));
-            case KING : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.KING_REPRESENTATION));
-            case KNIGHT : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.KNIGHT_REPRESENTATION));
-            case QUEEN : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.QUEEN_REPRESENTATION));
-            case ROOK : return new Piece(type, Color.BLACK, Character.toUpperCase(Piece.ROOK_REPRESENTATION));
+            case PAWN : return new Piece(type, Color.BLACK);
+            case BISHOP : return new Piece(type, Color.BLACK);
+            case KING : return new Piece(type, Color.BLACK);
+            case KNIGHT : return new Piece(type, Color.BLACK);
+            case QUEEN : return new Piece(type, Color.BLACK);
+            case ROOK : return new Piece(type, Color.BLACK);
         }
         return null;
     }
@@ -79,7 +97,6 @@ public class Piece implements Comparable<Piece> {
             return false;
         Piece piece = (Piece) object;
         if(piece.color == this.color &&
-                piece.representation == this.representation &&
                 piece.type == this.type)
             return true;
         return false;
@@ -93,4 +110,9 @@ public class Piece implements Comparable<Piece> {
         this.strength = strength;
     }
 
+    public char getPresentation() {
+        if(this.color == Color.WHITE)
+            return this.type.getPresentation();
+        return Character.toUpperCase(this.type.getPresentation());
+    }
 }

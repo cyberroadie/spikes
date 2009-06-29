@@ -54,12 +54,12 @@ public class PieceTest {
             Piece.Type type, char representation) {
             assertTrue(whitePiece.isWhite());
             assertEquals(type, whitePiece.getType());
-            assertEquals(representation, whitePiece.getRepresentation());
+            assertEquals(representation, whitePiece.getPresentation());
 
             assertTrue(blackPiece.isBlack());
             assertEquals(type, blackPiece.getType());
             assertEquals(Character.toUpperCase(representation),
-                    blackPiece.getRepresentation());
+                    blackPiece.getPresentation());
             
     }
 

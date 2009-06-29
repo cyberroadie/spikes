@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import static net.transformatorhuis.chess.pieces.Piece.Type.*;
 
 /**
  *
@@ -40,7 +41,7 @@ class Board {
                 if (piece == null) {
                     rankString.append('.');
                 } else {
-                    rankString.append(piece.getRepresentation());
+                    rankString.append(piece.getPresentation());
                 }
             }
             boardString.append(rankString.toString() + StringUtil.NEWLINE);
@@ -80,25 +81,22 @@ class Board {
         return noOfBlackPieces;
     }
 
-    public Piece getPiece(String location) {
-        // Conversion to column
-        int file = Character.getNumericValue(location.charAt(0)) - 10;
-        int rank = Math.abs(Integer.parseInt(location.substring(1)) - 1 - 7);
-
-        Piece piece = (Piece) board.get(file).get(rank);
+    public Piece getPiece(Position position) {
+        Piece piece = (Piece) board.get(position.getFile()).get(position.getRank());
         return piece;
 
     }
 
-    public void setPiece(Piece piece, String location) {
-        // Conversion to column
-        int file = Character.getNumericValue(location.charAt(0)) - 10;
-        int rank = Math.abs(Integer.parseInt(location.substring(1)) - 1 - 7);
-
-        if(board.get(file).get(rank) == null)
+    public void setPiece(Piece piece, Position position) {
+        if(board.get(position.getFile()).get(position.getRank()) == null)
             noOfPieces++;
-        board.get(file).set(rank, piece);
+        board.get(position.getFile()).set(position.getRank(), piece);
         
+    }
+
+    public void movePiece(Position from, Position to) {
+        if(getPiece(from).getType() == KING)
+            ;
     }
 
     private List getRank(int index) {
@@ -145,18 +143,9 @@ class Board {
     }
 
     private float getStrengthOfType(Piece piece, Collection file) {
-        switch(piece.getType()) {
-            case PAWN :
-                if(Collections.frequency(file, piece) > 1)
-                    return 0.5f;
-                else
-                    return 1f;
-            case BISHOP: return 3;
-            case KNIGHT: return 2.5f;
-            case QUEEN: return 9;
-            case ROOK: return 5;
-        }
-        return 0;
+        if(Piece.Type.PAWN == piece.getType() && Collections.frequency(file, piece) > 1)
+            return piece.getType().getStrength() / 2;
+        return piece.getType().getStrength();
     }
 
     public List getBlackStrengthList() {
@@ -166,6 +155,5 @@ class Board {
     public List getWhiteStrengthList() {
         return whiteStrengthList;
     }
-
 
 }
