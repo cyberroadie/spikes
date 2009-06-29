@@ -18,31 +18,47 @@ public class KeenAndLazyInitilizationTest {
 
     private long start;
     private long stop;
+    private int executionCount = 10000;
+    private int initilizationCount = 80000;
 
     @Test
     public void testKeenInitilization() {
+        // Initialization time
         start();
-        List<KeenInitialization> arrayList = new ArrayList(10000);
-        for (int i = 0; i < 10000; i++) {
+        List<KeenInitialization> arrayList = new ArrayList(initilizationCount);
+        for (int i = 0; i < initilizationCount; i++) {
             arrayList.add(new KeenInitialization());
         }
         stop();
-        System.out.println(timeToString());
-        assertEquals(Integer.valueOf(1), arrayList.get(500).getKeenVariable());
+        System.out.println("Initilizing time keen 1: " + timeToString());
+        // Execution time
+        start();
+        for (int i = 0; i < initilizationCount; i++) {
+            assertEquals(Integer.valueOf(1), arrayList.get(i).getKeenVariable());
+        }
+        stop();
+        System.out.println("Executing time keen 1: " + timeToString());
     }
 
     @Test
     public void testLazyInitilization() {
+        // Initialization time
         start();
-        List<LazyInitilization> arrayList = new ArrayList(10000);
-        for (int i = 0; i < 10000; i++) {
+        List<LazyInitilization> arrayList = new ArrayList(initilizationCount);
+        for (int i = 0; i < initilizationCount; i++) {
             arrayList.add(new LazyInitilization());
         }
         stop();
-        System.out.println(timeToString());
-        assertEquals(Integer.valueOf(1), arrayList.get(500).getLazyVariable());
+        System.out.println("Initilizing time lazy 1: " + timeToString());
+        // execution time
+        start();
+        for (int i = 0; i < initilizationCount; i++) {
+            assertEquals(Integer.valueOf(1), arrayList.get(i).getLazyVariable());
+        }
+        stop();
+        System.out.println("Executing time lazy 1: " + timeToString());
     }
-
+    
     public void start() {
         start = System.currentTimeMillis(); // start timing
     }
