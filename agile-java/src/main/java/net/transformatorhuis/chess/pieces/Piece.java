@@ -48,7 +48,7 @@ public class Piece implements Comparable<Piece> {
             return presentation;
         }
 
-    };
+    }
 
     private Piece(Piece.Type name, Piece.Color color) {
         this.color = color;
@@ -115,4 +115,5 @@ public class Piece implements Comparable<Piece> {
             return this.type.getPresentation();
         return Character.toUpperCase(this.type.getPresentation());
     }
+
 }

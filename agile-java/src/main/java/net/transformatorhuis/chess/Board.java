@@ -11,7 +11,7 @@ import static net.transformatorhuis.chess.pieces.Piece.Type.*;
  *
  * @author cyberroadie
  */
-class Board {
+public class Board {
     
     private int noOfPieces = 0;
     private List<List> board = new ArrayList<List>();
@@ -99,10 +99,6 @@ class Board {
             ;
     }
 
-    private List getRank(int index) {
-        return board.get(index);
-    }
-
     public float getBlackStrength() {
         float overalStrength = 0;
         blackStrengthList = new ArrayList();
@@ -156,4 +152,55 @@ class Board {
         return whiteStrengthList;
     }
 
+    public List getPossibleMoves(Position position) {
+        Piece piece = getPiece(position);
+        List<Position> moveList = new ArrayList();
+        if(piece.getType() == KING) {
+            if(position.getFile() > 0)
+                moveList.add(getNorth(position));
+            if(position.getFile() < 7)
+                moveList.add(getSouth(position));
+            if(position.getRank() < 7)
+                moveList.add(getEast(position));
+            if(position.getRank() > 0)
+                moveList.add(getWest(position));
+            if(position.getRank() > 0 && position.getFile() > 0)
+                moveList.add(getNorth(getWest(position)));
+            if(position.getRank() < 7 && position.getFile() < 7)
+                moveList.add(getSouth(getEast(position)));
+            if(position.getRank() > 0 && position.getFile() < 7)
+                moveList.add(getNorth(getEast(position)));
+            if(position.getRank() < 7 && position.getFile() > 0)
+                moveList.add(getSouth(getWest(position)));
+        }
+        return moveList;
+    }
+
+    private Position getNorth(Position position) {
+        Position newPosition = new Position();
+        newPosition.setFile(position.getFile() - 1);
+        newPosition.setRank(position.getRank());
+        return newPosition;
+    }
+
+    private Position getSouth(Position position) {
+        Position newPosition = new Position();
+        newPosition.setFile(position.getFile() + 1);
+        newPosition.setRank(position.getRank());
+        return newPosition;
+    }
+
+    private Position getEast(Position position) {
+        Position newPosition = new Position();
+        newPosition.setFile(position.getFile());
+        newPosition.setRank(position.getRank() + 1);
+        return newPosition;
+    }
+
+    private Position getWest(Position position) {
+        Position newPosition = new Position();
+        newPosition.setFile(position.getFile());
+        newPosition.setRank(position.getRank() - 1);
+        return newPosition;
+    }
 }

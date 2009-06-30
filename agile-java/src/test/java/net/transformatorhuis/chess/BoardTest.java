@@ -96,5 +96,14 @@ public class BoardTest {
         board.setPiece(Piece.createWhitePiece(KING), new Position("f1"));
     }
 
+    @Test
+    public void testGetPossibleMoves() {
+       List possibleMoves = board.getPossibleMoves(new Position("b8"));
+       assertTrue("Test a8", possibleMoves.contains(new Position("a8")));
+       assertTrue("Test c8", possibleMoves.contains(new Position("c8")));
+       assertTrue("Test a7", possibleMoves.contains(new Position("a7")));
+       assertTrue("Test b7", possibleMoves.contains(new Position("b7")));
+       assertTrue("Test c7", possibleMoves.contains(new Position("c7")));
+    }
 
 }
