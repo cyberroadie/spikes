@@ -6,17 +6,18 @@ package net.transformatorhuis.chess;
  */
 public class Position {
 
-    int file;
-    int rank;
-    String location;
+    int file = 0;
+    int rank = 0;
+    String location = null;
 
     public Position() {
+//        calculateLocation();
     }
-
+    
     public Position(String location) {
         this.file = Character.getNumericValue(location.charAt(0)) - 10;
         this.rank = Math.abs(Integer.parseInt(location.substring(1)) - 1 - 7);
-        this.location = location;
+        calculateLocation();
     }
 
     public int getFile() {
@@ -25,6 +26,7 @@ public class Position {
 
     public void setFile(int file) {
         this.file = file;
+        calculateLocation();
     }
 
     public int getRank() {
@@ -33,10 +35,24 @@ public class Position {
 
     public void setRank(int rank) {
         this.rank = rank;
+        calculateLocation();
     }
 
     public String getLocation() {
         return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    private void calculateLocation() {
+        char fileLocation = ((char) (file + 97));
+        int rankLocation = Math.abs(rank - 1 - 7);
+        StringBuilder bld = new StringBuilder("");
+        bld.append(fileLocation);
+        bld.append(rankLocation);
+        setLocation(bld.toString());
     }
 
     @Override

@@ -3,6 +3,7 @@ package net.transformatorhuis.chess;
 import java.util.List;
 import net.transformatorhuis.chess.pieces.Piece;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import static junit.framework.Assert.*;
 import static net.transformatorhuis.chess.pieces.Piece.Type.*;
