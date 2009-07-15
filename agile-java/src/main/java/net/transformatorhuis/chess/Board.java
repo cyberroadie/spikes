@@ -14,9 +14,7 @@ import static net.transformatorhuis.chess.pieces.Piece.Type.*;
 public class Board {
     
     private int noOfPieces = 0;
-    private List<List> board = new ArrayList<List>();
-    private List blackStrengthList = new ArrayList();
-    private List whiteStrengthList = new ArrayList();
+    private List<List> boardFileList = new ArrayList<List>();
 
     public Board() {
         this.initialize();
@@ -24,7 +22,7 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            board.add(i, createEmptyRow());
+            boardFileList.add(i, createEmptyRow());
         }
     }
 
@@ -32,12 +30,16 @@ public class Board {
         return noOfPieces;
     }
 
+    public List<List> getBoardFileList() {
+        return boardFileList;
+    }
+
     public String print() {
         StringBuilder boardString = new StringBuilder();
         for (int file = 0; file < 8; file++) {
             StringBuilder rankString = new StringBuilder();
             for (int rank = 0; rank < 8; rank++) {
-                Piece piece = (Piece) board.get(rank).get(file);
+                Piece piece = (Piece) boardFileList.get(rank).get(file);
                 if (piece == null) {
                     rankString.append('.');
                 } else {
@@ -59,7 +61,7 @@ public class Board {
 
     public int getNoOfBlackPieces(Piece.Type type) {
         int noOfBlackPieces = 0;
-        for (List<Piece> rank : board) {
+        for (List<Piece> rank : boardFileList) {
             for (Piece piece : rank) {
                 if((piece != null) && (piece.getType() == type) && piece.isBlack()) {
                     noOfBlackPieces++;
@@ -71,7 +73,7 @@ public class Board {
 
     public int getNoOfWhitePieces(Piece.Type type) {
         int noOfBlackPieces = 0;
-        for (List<Piece> rank : board) {
+        for (List<Piece> rank : boardFileList) {
             for (Piece piece : rank) {
                 if((piece != null) && (piece.getType() == type) && piece.isWhite()) {
                     noOfBlackPieces++;
@@ -82,74 +84,21 @@ public class Board {
     }
 
     public Piece getPiece(Position position) {
-        Piece piece = (Piece) board.get(position.getFile()).get(position.getRank());
+        Piece piece = (Piece) boardFileList.get(position.getFile()).get(position.getRank());
         return piece;
 
     }
 
     public void setPiece(Piece piece, Position position) {
-        if(board.get(position.getFile()).get(position.getRank()) == null)
+        if(boardFileList.get(position.getFile()).get(position.getRank()) == null)
             noOfPieces++;
-        board.get(position.getFile()).set(position.getRank(), piece);
+        boardFileList.get(position.getFile()).set(position.getRank(), piece);
         
     }
 
     public void movePiece(Position from, Position to) {
         if(getPiece(from).getType() == KING)
             ;
-    }
-
-    public float getBlackStrength() {
-        float overalStrength = 0;
-        blackStrengthList = new ArrayList();
-        for (List<Piece> file : board) {
-            for (Piece piece : file) {
-                if(piece != null) {
-                    if(piece.isBlack()) {
-                        float strength =  getStrengthOfType(piece, file);
-                        overalStrength = overalStrength + strength;
-                        piece.setStrength(strength);
-                        blackStrengthList.add(piece);
-                    }
-                }
-            }
-        }
-        Collections.sort(blackStrengthList);
-        return overalStrength;
-    }
-
-    public float getWhiteStrength() {
-        float overalStrength = 0;
-        whiteStrengthList = new ArrayList();
-        for (List<Piece> file : board) {
-            for (Piece piece : file) {
-                if(piece != null) {
-                    if(piece.isWhite()) {
-                        float strength =  getStrengthOfType(piece, file);
-                        overalStrength = overalStrength + strength;
-                        piece.setStrength(strength);
-                        whiteStrengthList.add(piece);
-                    }
-                        
-                }
-            }
-        }
-        Collections.sort(whiteStrengthList);
-        return overalStrength;
-    }
-
-    private float getStrengthOfType(Piece piece, Collection file) {
-        if(Piece.Type.PAWN == piece.getType() && Collections.frequency(file, piece) > 1)
-            return piece.getType().getStrength() / 2;
-        return piece.getType().getStrength();
-    }
-
-    public List getBlackStrengthList() {
-        return blackStrengthList;
-    }
-
-    public List getWhiteStrengthList() {
-        return whiteStrengthList;
     }
 
     public List getPossibleMoves(Position position) {

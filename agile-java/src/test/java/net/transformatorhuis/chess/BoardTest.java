@@ -58,25 +58,6 @@ public class BoardTest {
 
     }
 
-    @Test
-    public void testRelativeStrength() {
-        assertEquals(20f, board.getBlackStrength());
-        assertEquals(19.5f, board.getWhiteStrength());
-    }
-
-    @Test
-    public void testSorting() {
-        board.getBlackStrength();
-        board.getWhiteStrength();
-        List<Piece> blackStrengthList = board.getBlackStrengthList();
-        assertEquals(KING, blackStrengthList.get(0).getType());
-        assertEquals(QUEEN, blackStrengthList.get(blackStrengthList.size() - 1).getType());
-        List<Piece> whiteStrengthList = board.getWhiteStrengthList();
-        assertEquals(KING, whiteStrengthList.get(0).getType());
-        assertEquals(QUEEN, whiteStrengthList.get(whiteStrengthList.size() -  1).getType());
-        
-    }
-
     @Before
     public void createBoard() {
         board = new Board();
