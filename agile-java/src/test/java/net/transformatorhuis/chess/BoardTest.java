@@ -42,7 +42,7 @@ public class BoardTest {
 
     @Test
     public void testCountWhenReplacingPiece() {
-        board.setPiece(Piece.createBlackPiece(PAWN), new Position("e6"));
+        board.putPiece(Piece.createBlackPiece(PAWN), new Position("e6"));
         assertEquals(15, board.getNoOfPieces());
     }
 
@@ -61,31 +61,21 @@ public class BoardTest {
     @Before
     public void createBoard() {
         board = new Board();
-        board.setPiece(Piece.createBlackPiece(KING), new Position("b8"));
-        board.setPiece(Piece.createBlackPiece(ROOK), new Position("c8"));
-        board.setPiece(Piece.createBlackPiece(PAWN), new Position("a7"));
-        board.setPiece(Piece.createBlackPiece(PAWN), new Position("c7"));
-        board.setPiece(Piece.createBlackPiece(BISHOP), new Position("d7"));
-        board.setPiece(Piece.createBlackPiece(PAWN), new Position("b6"));
-        board.setPiece(Piece.createBlackPiece(QUEEN), new Position("e6"));
-        board.setPiece(Piece.createWhitePiece(KNIGHT), new Position("f4"));
-        board.setPiece(Piece.createWhitePiece(QUEEN), new Position("g4"));
-        board.setPiece(Piece.createWhitePiece(PAWN), new Position("f3"));
-        board.setPiece(Piece.createWhitePiece(PAWN), new Position("h3"));
-        board.setPiece(Piece.createWhitePiece(PAWN), new Position("f2"));
-        board.setPiece(Piece.createWhitePiece(PAWN), new Position("g2"));
-        board.setPiece(Piece.createWhitePiece(ROOK), new Position("e1"));
-        board.setPiece(Piece.createWhitePiece(KING), new Position("f1"));
-    }
-
-    @Test
-    public void testGetPossibleMoves() {
-       List possibleMoves = board.getPossibleMoves(new Position("b8"));
-       assertTrue("Test a8", possibleMoves.contains(new Position("a8")));
-       assertTrue("Test c8", possibleMoves.contains(new Position("c8")));
-       assertTrue("Test a7", possibleMoves.contains(new Position("a7")));
-       assertTrue("Test b7", possibleMoves.contains(new Position("b7")));
-       assertTrue("Test c7", possibleMoves.contains(new Position("c7")));
+        board.putPiece(Piece.createBlackPiece(KING), new Position("b8"));
+        board.putPiece(Piece.createBlackPiece(ROOK), new Position("c8"));
+        board.putPiece(Piece.createBlackPiece(PAWN), new Position("a7"));
+        board.putPiece(Piece.createBlackPiece(PAWN), new Position("c7"));
+        board.putPiece(Piece.createBlackPiece(BISHOP), new Position("d7"));
+        board.putPiece(Piece.createBlackPiece(PAWN), new Position("b6"));
+        board.putPiece(Piece.createBlackPiece(QUEEN), new Position("e6"));
+        board.putPiece(Piece.createWhitePiece(KNIGHT), new Position("f4"));
+        board.putPiece(Piece.createWhitePiece(QUEEN), new Position("g4"));
+        board.putPiece(Piece.createWhitePiece(PAWN), new Position("f3"));
+        board.putPiece(Piece.createWhitePiece(PAWN), new Position("h3"));
+        board.putPiece(Piece.createWhitePiece(PAWN), new Position("f2"));
+        board.putPiece(Piece.createWhitePiece(PAWN), new Position("g2"));
+        board.putPiece(Piece.createWhitePiece(ROOK), new Position("e1"));
+        board.putPiece(Piece.createWhitePiece(KING), new Position("f1"));
     }
 
 }

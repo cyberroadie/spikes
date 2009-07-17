@@ -2,10 +2,7 @@ package net.transformatorhuis.chess;
 
 import net.transformatorhuis.chess.pieces.Piece;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import static net.transformatorhuis.chess.pieces.Piece.Type.*;
 
 /**
  *
@@ -89,85 +86,11 @@ public class Board {
 
     }
 
-    public void setPiece(Piece piece, Position position) {
+    public void putPiece(Piece piece, Position position) {
         if(boardFileList.get(position.getFile()).get(position.getRank()) == null)
             noOfPieces++;
         boardFileList.get(position.getFile()).set(position.getRank(), piece);
         
-    }
-
-    public void movePiece(Position from, Position to) {
-        if(getPiece(from).getType() == KING)
-            ;
-    }
-
-    public List getPossibleMoves(Position position) {
-        Piece piece = getPiece(position);
-        List<Position> moveList = new ArrayList();
-        if(piece.getType() == KING) {
-                moveList.add(getNorth(position));
-                moveList.add(getSouth(position));
-                moveList.add(getEast(position));
-                moveList.add(getWest(position));
-                moveList.add(getNorthWest(position));
-                moveList.add(getSouthEast(position));
-                moveList.add(getNorthEast(position));
-                moveList.add(getSouthWest(position));
-                moveList.removeAll(Collections.singleton(null));
-        }
-        return moveList;
-    }
-
-    private Position getNorth(Position position) {
-        if(position.getRank() == 0 || position == null)
-            return null;
-        Position newPosition = new Position();
-        newPosition.setFile(position.getFile());
-        newPosition.setRank(position.getRank() - 1);
-        return newPosition;
-    }
-
-    private Position getSouth(Position position) {
-        if(position.getRank() == 7 || position == null)
-            return null;
-        Position newPosition = new Position();
-        newPosition.setFile(position.getFile());
-        newPosition.setRank(position.getRank() + 1);
-        return newPosition;
-    }
-
-    private Position getEast(Position position) {
-        if(position.getFile() == 7 || position == null)
-            return null;
-        Position newPosition = new Position();
-        newPosition.setFile(position.getFile() + 1);
-        newPosition.setRank(position.getRank());
-        return newPosition;
-    }
-
-    private Position getWest(Position position) {
-        if(position.getFile() == 0 || position == null)
-            return null;
-        Position newPosition = new Position();
-        newPosition.setFile(position.getFile() - 1);
-        newPosition.setRank(position.getRank());
-        return newPosition;
-    }
-
-    private Position getSouthWest(Position position) {
-        return getSouth(getWest(position));
-    }
-
-    private Position getSouthEast(Position position) {
-        return getSouth(getEast(position));
-    }
-
-    private Position getNorthEast(Position position) {
-        return getNorth(getEast(position));
-    }
-
-    private Position getNorthWest(Position position) {
-        return getNorth(getWest(position));
     }
 
 }
