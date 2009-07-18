@@ -31,6 +31,10 @@ public class Board {
         return boardFileList;
     }
 
+    /**
+     * Print an ASCII representation of the board
+     * @return ASCII board
+     */
     public String print() {
         StringBuilder boardString = new StringBuilder();
         for (int file = 0; file < 8; file++) {
@@ -56,11 +60,11 @@ public class Board {
         return emptyList;
     }
 
-    public int getNoOfBlackPieces(Piece.Type type) {
+    public int getNoOfBlackPieces(Class type) {
         int noOfBlackPieces = 0;
         for (List<Piece> rank : boardFileList) {
             for (Piece piece : rank) {
-                if((piece != null) && (piece.getType() == type) && piece.isBlack()) {
+                if((piece != null) && (piece.getClass() == type) && piece.isBlack()) {
                     noOfBlackPieces++;
                 }
             }
@@ -68,11 +72,11 @@ public class Board {
         return noOfBlackPieces;
     }
 
-    public int getNoOfWhitePieces(Piece.Type type) {
+    public int getNoOfWhitePieces(Class type) {
         int noOfBlackPieces = 0;
         for (List<Piece> rank : boardFileList) {
             for (Piece piece : rank) {
-                if((piece != null) && (piece.getType() == type) && piece.isWhite()) {
+                if((piece != null) && (piece.getClass() == type) && piece.isWhite()) {
                     noOfBlackPieces++;
                 }
             }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import net.transformatorhuis.chess.pieces.Pawn;
 import net.transformatorhuis.chess.pieces.Piece;
 
 
@@ -31,7 +32,7 @@ public class Game {
                     if(piece.isBlack()) {
                         float strength =  getStrengthOfType(piece, file);
                         overalStrength = overalStrength + strength;
-                        piece.setStrength(strength);
+//                        piece.setStrength(strength);
                         blackStrengthList.add(piece);
                     }
                 }
@@ -50,7 +51,7 @@ public class Game {
                     if(piece.isWhite()) {
                         float strength =  getStrengthOfType(piece, file);
                         overalStrength = overalStrength + strength;
-                        piece.setStrength(strength);
+//                        piece.setStrength(strength);
                         whiteStrengthList.add(piece);
                     }
 
@@ -62,9 +63,9 @@ public class Game {
     }
     
     private float getStrengthOfType(Piece piece, Collection file) {
-        if(Piece.Type.PAWN == piece.getType() && Collections.frequency(file, piece) > 1)
-            return piece.getType().getStrength() / 2;
-        return piece.getType().getStrength();
+        if(piece instanceof Pawn  && Collections.frequency(file, piece) > 1)
+            return piece.getStrength() / 2;
+        return piece.getStrength();
     }
 
     public List getBlackStrengthList() {
