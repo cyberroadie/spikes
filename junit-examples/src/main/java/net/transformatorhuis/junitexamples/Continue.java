@@ -1,5 +1,8 @@
 package net.transformatorhuis.junitexamples;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 /**
  *
  * @author cyberroadie
@@ -17,5 +20,15 @@ public class Continue {
             sb.append("* ");
         }
         return sb.toString().trim();
+    }
+
+    public static Vector split(int n) {
+        String factorial = getDivisibleByFiveString(n);
+        String[] split = factorial.split(" ");
+        Vector vector = new Vector();
+        for (String string : split) {
+            vector.add(string);
+        }
+        return vector;
     }
 }

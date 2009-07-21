@@ -22,4 +22,14 @@ public class ContinueTest {
         assertEquals("1 2 3 4", Continue.getDivisibleByFiveString(4));
     }
 
+    /**
+     * Test of split method, of class Continue.
+     */
+    @Test
+    public void testSplit() {
+        assertEquals("1", Continue.split(7).get(0));
+        assertEquals("5*", Continue.split(7).get(4));
+        assertEquals("7", Continue.split(7).get(6));
+    }
+
 }
