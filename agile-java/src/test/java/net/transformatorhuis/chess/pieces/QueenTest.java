@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  *
  * @author cyberroadie
  */
-public class QueenTest {
+public class QueenTest extends PieceTest {
 
     public QueenTest() {
 
@@ -21,20 +21,11 @@ public class QueenTest {
         queen.setPosition(new Position("e6"));
         List possibleMoves = queen.getPossibleMoves();
         // North
-        assertTrue("Test e7", possibleMoves.contains(new Position("e7")));
-        assertTrue("Test e8", possibleMoves.contains(new Position("e8")));
-        assertTrue("Test e5", possibleMoves.contains(new Position("e5")));
-        assertTrue("Test e4", possibleMoves.contains(new Position("e4")));
-        assertTrue("Test e3", possibleMoves.contains(new Position("e3")));
-        assertTrue("Test e2", possibleMoves.contains(new Position("e2")));
-        assertTrue("Test e1", possibleMoves.contains(new Position("e1")));
+        assertContains(possibleMoves, "e7", "e8", "e5", "e4", "e3", "e2", "e1");
         // North East
-        assertTrue("Test f7", possibleMoves.contains(new Position("f7")));
-        assertTrue("Test g8", possibleMoves.contains(new Position("g8")));
+        assertContains(possibleMoves, "f7", "g8");
         // South West
-        assertTrue("Test d5", possibleMoves.contains(new Position("d5")));
-        assertTrue("Test c4", possibleMoves.contains(new Position("c4")));
-
+        assertContains(possibleMoves, "d5","c4");
     }
 
 }

@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  *
  * @author cyberroadie
  */
-public class KingTest {
+public class KingTest extends PieceTest {
 
     public KingTest() {
     }
@@ -32,11 +32,7 @@ public class KingTest {
        King king = King.createBlackPiece();
        king.setPosition(new Position("b8"));
        List possibleMoves = king.getPossibleMoves();
-       assertTrue("Test a8", possibleMoves.contains(new Position("a8")));
-       assertTrue("Test c8", possibleMoves.contains(new Position("c8")));
-       assertTrue("Test a7", possibleMoves.contains(new Position("a7")));
-       assertTrue("Test b7", possibleMoves.contains(new Position("b7")));
-       assertTrue("Test c7", possibleMoves.contains(new Position("c7")));
+       assertContains(possibleMoves, "a8", "c8", "a7", "b7", "c7");
     }
 
 }
