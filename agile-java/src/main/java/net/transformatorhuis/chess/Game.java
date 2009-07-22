@@ -26,7 +26,8 @@ public class Game {
     public float getBlackStrength() {
         float overalStrength = 0;
         blackStrengthList = new ArrayList();
-        for (List<Piece> file : board.getBoardFileList()) {
+        for (int rank = 0; rank < 8; rank++) {
+            List<Piece> file = board.getBoardFileList(rank);
             for (Piece piece : file) {
                 if(piece != null) {
                     if(piece.isBlack()) {
@@ -45,7 +46,8 @@ public class Game {
     public float getWhiteStrength() {
         float overalStrength = 0;
         whiteStrengthList = new ArrayList();
-        for (List<Piece> file : board.getBoardFileList()) {
+        for (int rank = 0; rank < 8; rank++) {
+            List<Piece> file = board.getBoardFileList(rank);
             for (Piece piece : file) {
                 if(piece != null) {
                     if(piece.isWhite()) {

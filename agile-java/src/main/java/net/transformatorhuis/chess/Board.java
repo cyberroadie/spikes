@@ -1,7 +1,7 @@
 package net.transformatorhuis.chess;
 
-import net.transformatorhuis.chess.pieces.Piece;
 import java.util.ArrayList;
+import net.transformatorhuis.chess.pieces.Piece;
 import java.util.List;
 
 /**
@@ -9,17 +9,20 @@ import java.util.List;
  * @author cyberroadie
  */
 public class Board {
-    
+
     private int noOfPieces = 0;
-    private List<List> boardFileList = new ArrayList<List>();
+    private Piece[][] board = new Piece[8][8];
 
     public Board() {
         this.initialize();
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++) {
-            boardFileList.add(i, createEmptyRow());
+        for (int rank = 0; rank < 8; rank++) {
+            for (int file = 0; file < 8; file++) {
+                board[rank][file] = null;
+
+            }
         }
     }
 
@@ -27,7 +30,13 @@ public class Board {
         return noOfPieces;
     }
 
-    public List<List> getBoardFileList() {
+    public List<Piece> getBoardFileList(int file) {
+        List boardFileList = new ArrayList();
+        for (int rank = 0; rank < 8; rank++) {
+            Piece piece = board[rank][file];
+            boardFileList.add(piece);
+
+        }
         return boardFileList;
     }
 
@@ -37,64 +46,63 @@ public class Board {
      */
     public String print() {
         StringBuilder boardString = new StringBuilder();
-        for (int file = 0; file < 8; file++) {
+        for (int rank = 0; rank < 8; rank++) {
             StringBuilder rankString = new StringBuilder();
-            for (int rank = 0; rank < 8; rank++) {
-                Piece piece = (Piece) boardFileList.get(rank).get(file);
+            for (int file = 0; file < 8; file++) {
+                Piece piece = board[rank][file];
                 if (piece == null) {
                     rankString.append('.');
                 } else {
                     rankString.append(piece.getPresentation());
                 }
+
             }
             boardString.append(rankString.toString() + StringUtil.NEWLINE);
         }
-        return boardString.toString();
-    }
 
-    private List<Piece> createEmptyRow() {
-        List<Piece> emptyList = new ArrayList<Piece>();
-        for (int i = 0; i < 8; i++) {
-            emptyList.add(null);
-        }
-        return emptyList;
+        return boardString.toString();
     }
 
     public int getNoOfBlackPieces(Class type) {
         int noOfBlackPieces = 0;
-        for (List<Piece> rank : boardFileList) {
-            for (Piece piece : rank) {
-                if((piece != null) && (piece.getClass() == type) && piece.isBlack()) {
+        for (int rank = 0; rank < 8; rank++) {
+            for (int file = 0; file < 8; file++) {
+                Piece piece = board[rank][file];
+                if ((piece != null) && (piece.getClass() == type) && piece.isBlack()) {
                     noOfBlackPieces++;
                 }
+
             }
         }
         return noOfBlackPieces;
     }
 
     public int getNoOfWhitePieces(Class type) {
-        int noOfBlackPieces = 0;
-        for (List<Piece> rank : boardFileList) {
-            for (Piece piece : rank) {
-                if((piece != null) && (piece.getClass() == type) && piece.isWhite()) {
-                    noOfBlackPieces++;
+        int noOfWhitePieces = 0;
+        for (int rank = 0; rank <
+                8; rank++) {
+            for (int file = 0; file < 8; file++) {
+                Piece piece = (Piece) board[rank][file];
+                if ((piece != null) && (piece.getClass() == type) && piece.isWhite()) {
+                    noOfWhitePieces++;
                 }
+
             }
         }
-        return noOfBlackPieces;
+        return noOfWhitePieces;
     }
 
-    public Piece getPiece(Position position) {
-        Piece piece = (Piece) boardFileList.get(position.getFile()).get(position.getRank());
+    public Piece getPiece(
+            Position position) {
+        Piece piece = (Piece) board[position.getRank()][position.getFile()];
         return piece;
 
     }
 
     public void putPiece(Piece piece, Position position) {
-        if(boardFileList.get(position.getFile()).get(position.getRank()) == null)
+        if (board[position.getRank()][position.getFile()] == null) {
             noOfPieces++;
-        boardFileList.get(position.getFile()).set(position.getRank(), piece);
-        
+        }
+        board[position.getRank()][position.getFile()] = piece;
     }
-
 }
