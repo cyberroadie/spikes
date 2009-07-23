@@ -77,4 +77,19 @@ public class BoardTest {
         board.putPiece(King.createWhitePiece(), new Position("f1"));
     }
 
+    @Test
+    public void testIterator() {
+        int i = 0;
+        for (Piece piece : board) {
+            switch(i) {
+                case 0: 
+                    assertTrue(piece instanceof King);
+                    break;
+                case 4:
+                    assertTrue(piece instanceof Bishop);
+                    break;
+            }
+            i++;
+        }
+    }
 }

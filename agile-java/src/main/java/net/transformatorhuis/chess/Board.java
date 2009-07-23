@@ -1,6 +1,8 @@
 package net.transformatorhuis.chess;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import net.transformatorhuis.chess.pieces.Piece;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  *
  * @author cyberroadie
  */
-public class Board {
+public class Board implements Iterable<Piece> {
 
     private int noOfPieces = 0;
     private Piece[][] board = new Piece[8][8];
@@ -65,13 +67,9 @@ public class Board {
 
     public int getNoOfBlackPieces(Class type) {
         int noOfBlackPieces = 0;
-        for (int rank = 0; rank < 8; rank++) {
-            for (int file = 0; file < 8; file++) {
-                Piece piece = board[rank][file];
-                if ((piece != null) && (piece.getClass() == type) && piece.isBlack()) {
-                    noOfBlackPieces++;
-                }
-
+        for (Piece piece : this) {
+            if ((piece != null) && (piece.getClass() == type) && piece.isBlack()) {
+                noOfBlackPieces++;
             }
         }
         return noOfBlackPieces;
@@ -79,15 +77,11 @@ public class Board {
 
     public int getNoOfWhitePieces(Class type) {
         int noOfWhitePieces = 0;
-        for (int rank = 0; rank <
-                8; rank++) {
-            for (int file = 0; file < 8; file++) {
-                Piece piece = (Piece) board[rank][file];
-                if ((piece != null) && (piece.getClass() == type) && piece.isWhite()) {
-                    noOfWhitePieces++;
-                }
-
+        for (Piece piece : this) {
+            if ((piece != null) && (piece.getClass() == type) && piece.isWhite()) {
+                noOfWhitePieces++;
             }
+
         }
         return noOfWhitePieces;
     }
@@ -103,6 +97,22 @@ public class Board {
         if (board[position.getRank()][position.getFile()] == null) {
             noOfPieces++;
         }
+
         board[position.getRank()][position.getFile()] = piece;
+    }
+
+    @Override
+    public Iterator<Piece> iterator() {
+        List pieceList = new ArrayList();
+        for (int rank = 0; rank <
+                8; rank++) {
+            for (int file = 0; file <
+                    8; file++) {
+                pieceList.add(board[rank][file]);
+            }
+
+        }
+        pieceList.removeAll(Collections.singleton(null));
+        return pieceList.iterator();
     }
 }
