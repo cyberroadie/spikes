@@ -3,8 +3,9 @@
  * and open the template in the editor.
  */
 
-package net.transformatorhuis.junitexamples;
+package net.transformatorhuis.junit.examples;
 
+import net.transformatorhuis.junit.examples.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;

@@ -1,5 +1,6 @@
-package net.transformatorhuis.junitexamples;
+package net.transformatorhuis.junit.examples;
 
+import net.transformatorhuis.junit.examples.*;
 import java.util.logging.Formatter;
 import java.util.logging.Level;
 import org.junit.Before;

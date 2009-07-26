@@ -1,5 +1,6 @@
-package net.transformatorhuis.junitexamples;
+package net.transformatorhuis.junit.examples;
 
+import net.transformatorhuis.junit.examples.*;
 import java.util.logging.Logger;
 import org.junit.Test;
 

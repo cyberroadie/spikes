@@ -1,5 +1,6 @@
-package net.transformatorhuis.junitexamples;
+package net.transformatorhuis.junit.examples;
 
+import net.transformatorhuis.junit.examples.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

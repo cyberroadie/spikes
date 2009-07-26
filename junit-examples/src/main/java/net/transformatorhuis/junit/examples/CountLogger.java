@@ -1,4 +1,4 @@
-package net.transformatorhuis.junitexamples;
+package net.transformatorhuis.junit.examples;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
