@@ -10,7 +10,7 @@ public class Boom {
         throw new SimpleException("Booooom!");
     }
 
-    public static void reThrows() {
+    public static void rethrows() {
         try {
             Boom.blowsUp();
         } catch (Exception e) {
