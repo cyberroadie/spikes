@@ -1,4 +1,4 @@
-package net.transformatorhuis.junit.examples;
+package net.transformtorhuis.junit.agilejava;
 
 /**
  *

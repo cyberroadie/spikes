@@ -1,4 +1,4 @@
-package net.transformatorhuis.junit.examples;
+package net.transformtorhuis.junit.agilejava;
 
 import java.util.ArrayList;
 import java.util.Vector;

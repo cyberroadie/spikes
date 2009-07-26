@@ -1,11 +1,11 @@
-package net.transformatorhuis.junit.examples;
+package net.transformatorhuis.junit.agilejava;
 
 import net.transformatorhuis.junit.examples.*;
 import java.util.logging.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static net.transformatorhuis.junit.examples.Boom.*;
+import static net.transformtorhuis.junit.agilejava.Boom.*;
 
 /**
  *
