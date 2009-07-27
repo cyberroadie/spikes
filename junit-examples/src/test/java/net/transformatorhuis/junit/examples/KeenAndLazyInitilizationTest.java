@@ -1,11 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package net.transformatorhuis.junit.examples;
 
-import net.transformatorhuis.junit.examples.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -19,8 +13,7 @@ public class KeenAndLazyInitilizationTest {
 
     private long start;
     private long stop;
-    private int executionCount = 10000;
-    private int initilizationCount = 80000;
+    private int initilizationCount = 8000000;
 
     @Test
     public void testKeenInitilization() {
