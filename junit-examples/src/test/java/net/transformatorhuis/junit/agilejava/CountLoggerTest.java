@@ -1,4 +1,4 @@
-package net.transformatorhuis.junit.examples;
+package net.transformatorhuis.junit.agilejava;
 
 import net.transformatorhuis.junit.examples.*;
 import java.util.logging.Formatter;

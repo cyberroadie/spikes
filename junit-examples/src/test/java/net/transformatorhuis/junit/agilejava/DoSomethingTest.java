@@ -1,4 +1,4 @@
-package net.transformatorhuis.junit.examples;
+package net.transformatorhuis.junit.agilejava;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

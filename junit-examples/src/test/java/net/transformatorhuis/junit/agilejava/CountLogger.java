@@ -1,4 +1,4 @@
-package net.transformatorhuis.junit.examples;
+package net.transformatorhuis.junit.agilejava;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
