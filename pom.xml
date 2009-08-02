@@ -51,10 +51,7 @@
 
     <modules>
         <module>agile-java</module>
-        <module>class-variables</module>
-        <module>comparable</module>
         <module>junit-examples</module>
-        <module>polymorphism</module>
     </modules>
 
     <build>
@@ -70,3 +67,6 @@
         </plugins>
    </build>
 </project>
+
+
+
