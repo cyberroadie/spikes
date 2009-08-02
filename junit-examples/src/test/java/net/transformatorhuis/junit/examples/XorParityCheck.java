@@ -1,7 +1,5 @@
 package net.transformatorhuis.junit.examples;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,7 +18,9 @@ public class XorParityCheck {
         assertEquals(1, xorAll(1, 1, 0, 1));
         int result = xorAll(7, 1, 1); // 7 binary: 0111
         assertTrue(result%2 > 0); // test for odd number
-        result = xorAll(7, 1, 0);
+
+        assertFalse(result%2 == 0); // test for odd number
+        result = xorAll(1, 1, 0);
         assertTrue(result%2 == 0); // test for even number
     }
 
