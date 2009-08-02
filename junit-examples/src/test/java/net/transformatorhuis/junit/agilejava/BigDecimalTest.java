@@ -22,4 +22,17 @@ public class BigDecimalTest {
         fatOne = fatOne.add(fatTwo);
         assertEquals(new BigDecimal("30.0000"), fatOne);
     }
+
+    @Test
+    public void unequalScale() {
+        BigDecimal fatOne = new BigDecimal("10");
+        BigDecimal fatTwo = new BigDecimal("10.00");
+        // Scale doesn't match OneScale < TwoScale
+        assertFalse(fatOne.equals(fatTwo));
+        assertFalse(fatTwo.equals(fatOne));
+
+        BigDecimal fatThree = new BigDecimal("20.00");
+        BigDecimal fatFour = new BigDecimal("20.00");
+        assertTrue(fatThree.equals(fatFour));
+    }
 }
