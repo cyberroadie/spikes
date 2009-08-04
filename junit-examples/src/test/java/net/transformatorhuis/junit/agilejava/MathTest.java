@@ -23,9 +23,10 @@ public class MathTest {
 
     @Test
     public void valueOfRInt() {
-        assertEquals(1.0d, Math.rint(1.9));
-        assertTrue(2.0d == Math.rint(1.5));
-        assertTrue(2.0d == Math.rint(2.5));
+        final double TOLERANCE = 0.005d;
+        assertEquals(2.0d, Math.rint(1.9), TOLERANCE);
+        assertEquals(2.0d, Math.rint(1.5), TOLERANCE);
+        assertEquals(2.0d, Math.rint(2.5), TOLERANCE);
     }
 
 }
