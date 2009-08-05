@@ -7,9 +7,9 @@ import static org.junit.Assert.*;
  *
  * @author cyberroadie
  */
-public class BitShiftingTest {
+public class BitsTest {
 
-    public BitShiftingTest() {
+    public BitsTest() {
     }
 
     @Test
@@ -20,7 +20,18 @@ public class BitShiftingTest {
     @Test
     public void decimal() {
         int x = 1;
-        assertEquals(-2, ~x);
+        int y = ~x;
+        printXY(x, y);
+        assertEquals(-2, y);
+        x = 4;
+        y = ~x;
+        printXY(x, y);
+        assertEquals(-5, y);
+    }
+
+    private void printXY(int x, int y) {
+        System.out.println("x: " + Integer.toBinaryString(x));
+        System.out.println("y: " + Integer.toBinaryString(y));
     }
 
     @Test

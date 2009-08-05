@@ -1,8 +1,8 @@
 package net.transformatorhuis.junit.agilejava;
 
-import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 import java.util.List;
+import net.transformtorhuis.junit.agilejava.Swapper;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,30 +15,37 @@ import static org.junit.Assert.*;
  */
 public class RandomSwapperTest {
 
-    List<Integer> numberList;
-
-    public RandomSwapperTest() {
-    }
-
-    @Before
-    public void createList() {
-        numberList = new ArrayList<Integer>();
-        for (int i = 0; i <= 100; i++) {
-            numberList.add(i);
+    @Test
+    public void randomSwapper() {
+        List<Integer> checkList;
+        List<Integer> swappedList;
+        Swapper swapper = new Swapper();
+        for (int i = 0; i < 10000; i++) {
+            checkList = new ArrayList(swapper.getNumberList());
+            swappedList = swapper.swap();
+            checkSwap(swappedList, checkList);
         }
     }
 
-    @Test
-    public void randomSwapper() {
+    private boolean checkSwap(List swappedList, List checkList) {
+        int firstPosition = -1;
+        int secondPosition = -1;
+        for (int i = 0; i < checkList.size(); i++) {
+            if (checkList.get(i) != swappedList.get(i)) {
+                if (firstPosition == -1) {
+                    firstPosition = i;
+                } else {
+                    secondPosition = i;
+                    if (swappedList.get(firstPosition) == checkList.get(secondPosition)
+                            && swappedList.size() ==  checkList.size()) {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+        return false;
     }
-
-    public void swap(List<Integer> list) {
-        int position1 = (int) (Math.random() * 100);
-        int position2 = (int) (Math.random() * 100);
-        int value1 = list.get(position1);
-        int value2 = list.get(position2);
-        list.set(position1, value2);
-        list.set(position2, value1);
-    }
-    
 }
+
