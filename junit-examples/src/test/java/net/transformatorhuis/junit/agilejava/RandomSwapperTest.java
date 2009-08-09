@@ -2,7 +2,6 @@ package net.transformatorhuis.junit.agilejava;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.transformtorhuis.junit.agilejava.Swapper;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;

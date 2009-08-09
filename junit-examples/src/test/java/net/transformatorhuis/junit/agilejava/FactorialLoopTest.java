@@ -1,6 +1,5 @@
 package net.transformatorhuis.junit.agilejava;
 
-import net.transformtorhuis.junit.agilejava.FactorialLoops;
 import net.transformatorhuis.junit.examples.*;
 import org.junit.Test;
 import static org.junit.Assert.*;

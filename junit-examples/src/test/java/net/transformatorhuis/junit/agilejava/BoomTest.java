@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static net.transformtorhuis.junit.agilejava.Boom.*;
+import static net.transformatorhuis.junit.agilejava.Boom.*;
 
 /**
  *

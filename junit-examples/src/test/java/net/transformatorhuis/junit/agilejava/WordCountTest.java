@@ -1,6 +1,6 @@
 package net.transformatorhuis.junit.agilejava;
 
-import net.transformtorhuis.junit.agilejava.*;
+import net.transformatorhuis.junit.agilejava.*;
 import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -1,6 +1,6 @@
 package net.transformatorhuis.junit.agilejava;
 
-import net.transformtorhuis.junit.agilejava.*;
+import net.transformatorhuis.junit.agilejava.*;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.Before;

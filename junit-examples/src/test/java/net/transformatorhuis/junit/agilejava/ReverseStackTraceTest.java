@@ -1,6 +1,5 @@
 package net.transformatorhuis.junit.agilejava;
 
-import net.transformtorhuis.junit.agilejava.Boom;
 import net.transformatorhuis.junit.examples.*;
 import java.util.logging.Logger;
 import org.junit.Test;
