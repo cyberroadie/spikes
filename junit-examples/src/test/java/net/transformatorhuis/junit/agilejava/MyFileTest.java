@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import net.transformatorhuis.junit.agilejava.MyFile.MyDoesNotFileExistException;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -103,16 +101,16 @@ public class MyFileTest {
      */
     @Test
     public void testDelete() {
-        final String FILENAME = "test.txt";
+        final String TEMP_FILENAME = "test.txt";
         try {
-            File file = new File(FILENAME);
+            File file = new File(TEMP_FILENAME);
             file.createNewFile();
         } catch (IOException ex) {
             fail("Oops");
         }
-        MyFile myFile = new MyFile(FILENAME);
+        MyFile myFile = new MyFile(TEMP_FILENAME);
         myFile.delete();
-        File file = new File(FILENAME);
+        File file = new File(TEMP_FILENAME);
         assertFalse(file.exists());
 
     }
