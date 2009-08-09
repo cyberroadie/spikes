@@ -1,5 +1,6 @@
-package net.transformtorhuis.junit.agilejava;
+package net.transformatorhuis.junit.agilejava;
 
+import net.transformtorhuis.junit.agilejava.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.Test;
