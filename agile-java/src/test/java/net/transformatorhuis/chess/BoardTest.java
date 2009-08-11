@@ -1,9 +1,7 @@
 package net.transformatorhuis.chess;
 
-import java.util.List;
 import net.transformatorhuis.chess.pieces.*;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import static junit.framework.Assert.*;
 
@@ -14,23 +12,21 @@ import static junit.framework.Assert.*;
 public class BoardTest {
 
     Board board;
-   
+    final String boardLayout =
+            ".KR.....\n" +
+            "P.PB....\n" +
+            ".P..Q...\n" +
+            "........\n" +
+            ".....nq.\n" +
+            ".....p.p\n" +
+            ".....pp.\n" +
+            "....rk..\n";
+
     @Test
     public void testCreate() {
         assertEquals(15, board.getNoOfPieces());
         System.out.println(board.print());
-        assertEquals(
-                ".KR.....\n" +
-                "P.PB....\n" +
-                ".P..Q...\n" +
-                "........\n" +
-                ".....nq.\n" +
-                ".....p.p\n" +
-                ".....pp.\n" +
-                "....rk..\n",
-                board.print()
-                );
-                
+        assertEquals(boardLayout, board.print());
     }
 
     @Test
@@ -81,8 +77,8 @@ public class BoardTest {
     public void testIterator() {
         int i = 0;
         for (Piece piece : board) {
-            switch(i) {
-                case 0: 
+            switch (i) {
+                case 0:
                     assertTrue(piece instanceof King);
                     break;
                 case 4:
@@ -92,4 +88,5 @@ public class BoardTest {
             i++;
         }
     }
+   
 }

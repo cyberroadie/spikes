@@ -1,5 +1,6 @@
 package net.transformatorhuis.chess.pieces;
 
+import java.io.Serializable;
 import java.util.List;
 import net.transformatorhuis.chess.Position;
 
@@ -7,7 +8,9 @@ import net.transformatorhuis.chess.Position;
  * @author Olivier Van Acker
  *         Date: 20-Jun-2009
  */
-public abstract class Piece implements Comparable<Piece> {
+public abstract class Piece implements Comparable<Piece>, Serializable {
+
+    private static final long serialVersionUID = 5861106917050229362L;
 
     private Piece.Color color;
     private Position position;
@@ -44,6 +47,14 @@ public abstract class Piece implements Comparable<Piece> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.color.hashCode();
+        hash = 79 * hash + (this.position != null ? this.position.hashCode() : 0);
+        return hash;
     }
 
     public abstract float getStrength();

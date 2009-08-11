@@ -1,5 +1,7 @@
 package net.transformatorhuis.chess;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -10,7 +12,9 @@ import java.util.List;
  *
  * @author cyberroadie
  */
-public class Board implements Iterable<Piece> {
+public class Board implements Iterable<Piece>, Serializable {
+
+    private static final long serialVersionUID = 8404060220437057028L;
 
     private int noOfPieces = 0;
     private Piece[][] board = new Piece[8][8];
@@ -115,4 +119,13 @@ public class Board implements Iterable<Piece> {
         pieceList.removeAll(Collections.singleton(null));
         return pieceList.iterator();
     }
+
+    public void save(File backupFile) {
+
+    }
+
+    public void Load(File backupFile) {
+        
+    }
+
 }

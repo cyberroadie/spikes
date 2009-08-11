@@ -1,9 +1,18 @@
 package net.transformatorhuis.chess;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.transformatorhuis.chess.pieces.Pawn;
 import net.transformatorhuis.chess.pieces.Piece;
 
@@ -21,6 +30,10 @@ public class Game {
 
     public Game(Board board) {
         this.board = board;
+    }
+
+    public Game(File saveGame) throws FileNotFoundException, IOException, ClassNotFoundException {
+        board = loadBoard(saveGame);
     }
 
     public float getBlackStrength() {
@@ -77,4 +90,30 @@ public class Game {
     public List getWhiteStrengthList() {
         return whiteStrengthList;
     }
+
+    public void saveBoard(File saveFile) throws FileNotFoundException, IOException {
+        ObjectOutputStream output = null;
+        try {
+            output = new ObjectOutputStream(new FileOutputStream(saveFile));
+            output.writeObject(this.board);
+        } finally {
+            output.close();
+        }
+    }
+
+    public Board loadBoard(File saveFile) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream input = null;
+        try {
+            input = new ObjectInputStream(new FileInputStream(saveFile));
+            board = (Board) input.readObject();
+        } finally {
+            input.close();
+        }
+        return board;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
 }

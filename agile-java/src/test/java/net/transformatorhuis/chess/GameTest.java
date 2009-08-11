@@ -1,5 +1,8 @@
 package net.transformatorhuis.chess;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import net.transformatorhuis.chess.pieces.*;
 import org.junit.Before;
@@ -17,6 +20,16 @@ public class GameTest {
 
     public GameTest() {
     }
+
+    final String boardLayout =
+            ".KR.....\n" +
+            "P.PB....\n" +
+            ".P..Q...\n" +
+            "........\n" +
+            ".....nq.\n" +
+            ".....p.p\n" +
+            ".....pp.\n" +
+            "....rk..\n";
 
    @Before
     public void createBoard() {
@@ -57,4 +70,41 @@ public class GameTest {
         assertEquals(Queen.class, whiteStrengthList.get(whiteStrengthList.size() -  1).getClass());
     }
 
+    @Test
+    public void testSaveAndRestore() {
+        File saveFile = new File("board.save");
+        if(saveFile.exists()) {
+            saveFile.delete();
+        }
+
+        // Save game
+        try {
+            game.saveBoard(saveFile);
+        } catch (FileNotFoundException ex) {
+            fail(ex.toString());
+        } catch (IOException ex) {
+            fail(ex.toString());
+        }
+        
+        assertTrue(saveFile.exists());
+
+        // Restore game
+        Game checkGame = null;
+        try {
+            checkGame = new Game(saveFile);
+        } catch (FileNotFoundException ex) {
+            fail(ex.toString());
+        } catch (IOException ex) {
+            fail(ex.toString());
+        } catch (ClassNotFoundException ex) {
+            fail(ex.toString());
+        }
+        
+        Board board = checkGame.getBoard();
+        System.out.println("Board:\n" + board.print());
+        assertEquals(boardLayout, board.print());
+
+        saveFile.delete();
+        
+    }
 }
