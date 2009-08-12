@@ -107,4 +107,42 @@ public class GameTest {
         saveFile.delete();
         
     }
+
+    @Test
+    public void testSaveAsciiAndRestore() {
+        File saveFile = new File("board.save");
+        if(saveFile.exists()) {
+            saveFile.delete();
+        }
+
+        // Save game
+        try {
+            game.saveAsciiBoard(saveFile);
+        } catch (FileNotFoundException ex) {
+            fail(ex.toString());
+        } catch (IOException ex) {
+            fail(ex.toString());
+        }
+
+        assertTrue(saveFile.exists());
+
+        // Restore game
+        Game checkGame = null;
+        try {
+            checkGame = new Game();
+            checkGame.loadAsciiBoard(saveFile);
+        } catch (FileNotFoundException ex) {
+            fail(ex.toString());
+        } catch (IOException ex) {
+            fail(ex.toString());
+        } 
+
+        Board board = checkGame.getBoard();
+        System.out.println("Board:\n" + board.print());
+        assertEquals(boardLayout, board.print());
+
+        saveFile.delete();
+
+    }
+
 }
