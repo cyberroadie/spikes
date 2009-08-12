@@ -15,7 +15,7 @@ public class BitCountTest {
     public void countBitsChar() {
         char a = Character.MAX_VALUE;
         
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 16; i++) {
             System.out.println("Char: " + Integer.toBinaryString(a));
             a = (char) (a >>> 1);
             System.out.println("Count: " + (i + 1));

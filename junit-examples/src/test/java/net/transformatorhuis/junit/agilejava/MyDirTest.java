@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import net.transformatorhuis.junit.agilejava.MyDir.MyDirException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -59,5 +60,12 @@ public class MyDirTest {
         test2.delete();
         directory.delete();
     }
+
+    @Test
+    public void testInstantiation() {
+        MyDir.Attributes attributes = new MyDir.Attributes();
+    }
+
+
 
 }

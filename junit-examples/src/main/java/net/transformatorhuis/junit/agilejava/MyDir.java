@@ -43,4 +43,27 @@ public class MyDir {
         }
         return myFiles;
     }
+
+    public static class Attributes {
+        boolean readOnly = false;
+        boolean hidden = false;
+
+        public boolean isHidden() {
+            return hidden;
+        }
+
+        public void setHidden(boolean hidden) {
+            this.hidden = hidden;
+        }
+
+        public boolean isReadOnly() {
+            return readOnly;
+        }
+
+        public void setReadOnly(boolean readOnly) {
+            this.readOnly = readOnly;
+        }
+
+    }
+
 }
