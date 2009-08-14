@@ -1,9 +1,6 @@
 package net.transformatorhuis.junit.agilejava;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -20,6 +17,15 @@ public class BitCountTest {
             a = (char) (a >>> 1);
             System.out.println("Count: " + (i + 1));
         }
+
+        // Alternative
+        int bitCount = 0;
+        while(a > 0) {
+            a = (char) (a & (a - 1));
+            bitCount++;
+        }
+        System.out.println("Bit Count: " + bitCount);
+
     }
 
     @Test

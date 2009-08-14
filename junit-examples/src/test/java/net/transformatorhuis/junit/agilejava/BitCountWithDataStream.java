@@ -18,9 +18,16 @@ public class BitCountWithDataStream {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         output.write(a);
         byte[] bytes = output.toByteArray();
-        System.out.println("Char: " + Integer.toBinaryString(a));
-        System.out.println("Count: " + bytes.length * 8);
+        String bitString = Integer.toBinaryString(a);
+        System.out.println("Char: " + bitString);
+        System.out.println("Count: " + bitString.length());
 
+        int bitCount = 0;
+        while(a > 0) {
+            a = (char) (a & (a - 1));
+            bitCount++;
+        }
+        System.out.println("Bit Count: " + bitCount);
     }
 
     @Test
@@ -30,13 +37,23 @@ public class BitCountWithDataStream {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         output.write(a);
         byte[] bytes = output.toByteArray();
-        System.out.println("Byte: " + Integer.toBinaryString(a));
-        System.out.println("Count: " + bytes.length * 8);
+        String bitString = Integer.toBinaryString(a);
+        System.out.println("Char: " + bitString);
+        System.out.println("Count: " + bitString.length());
+        
         try {
             output.close();
         } catch (IOException ex) {
             fail();
         }
+
+        int bitCount = 0;
+        while(a > 0) {
+            a = (byte) (a & (a - 1));
+            bitCount++;
+        }
+        System.out.println("Bit Count: " + bitCount);
+
     }
 
     @Test
@@ -46,13 +63,22 @@ public class BitCountWithDataStream {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         output.write(a);
         byte[] bytes = output.toByteArray();
-        System.out.println("Short: " + a);
-        System.out.println("Count: " + bytes.length * 8);
+        String bitString = Integer.toBinaryString(a);
+        System.out.println("Char: " + bitString);
+        System.out.println("Count: " + bitString.length());
         try {
             output.close();
         } catch (IOException ex) {
             fail();
         }
+
+        int bitCount = 0;
+        while(a > 0) {
+            a = (short) (a & (a - 1));
+            bitCount++;
+        }
+        System.out.println("Bit Count: " + bitCount);
+
     }
 
     @Test
@@ -62,12 +88,44 @@ public class BitCountWithDataStream {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         output.write(a);
         byte[] bytes = output.toByteArray();
-        System.out.println("Short: " + Integer.toBinaryString(a));
-        System.out.println("Count: " + bytes.length * 8);
+        String bitString = Integer.toBinaryString(a);
+        System.out.println("Char: " + bitString);
+        System.out.println("Count: " + bitString.length());
         try {
             output.close();
         } catch (IOException ex) {
             fail();
         }
+
+        int bitCount = 0;
+        while(a > 0) {
+            a = (int) (a & (a - 1));
+            bitCount++;
+        }
+        System.out.println("Bit Count: " + bitCount);
+
+    }
+
+    @Test
+    public void countBitsLong() {
+        long a = Long.MAX_VALUE;
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        String bitString = Long.toBinaryString(a);
+        System.out.println("Char: " + bitString);
+        System.out.println("Count: " + bitString.length());
+        try {
+            output.close();
+        } catch (IOException ex) {
+            fail();
+        }
+
+        int bitCount = 0;
+        while(a > 0) {
+            a = (long) (a & (a - 1));
+            bitCount++;
+        }
+        System.out.println("Bit Count: " + bitCount);
+
     }
 }
