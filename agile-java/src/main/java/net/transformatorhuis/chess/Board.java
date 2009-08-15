@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import net.transformatorhuis.chess.pieces.Piece;
 import java.util.List;
@@ -37,7 +38,7 @@ public class Board implements Iterable<Piece>, Serializable {
     }
 
     public List<Piece> getBoardFileList(int file) {
-        List boardFileList = new ArrayList();
+        List<Piece> boardFileList = new ArrayList<Piece>();
         for (int rank = 0; rank < 8; rank++) {
             Piece piece = board[rank][file];
             boardFileList.add(piece);
@@ -101,7 +102,9 @@ public class Board implements Iterable<Piece>, Serializable {
         if (board[position.getRank()][position.getFile()] == null) {
             noOfPieces++;
         }
-
+        if(piece != null) {
+            piece.setPosition(position);
+        }
         board[position.getRank()][position.getFile()] = piece;
     }
 
@@ -126,6 +129,38 @@ public class Board implements Iterable<Piece>, Serializable {
 
     public void Load(File backupFile) {
         
+    }
+
+    public List<Position> getPositions() {
+        List<Position> positions = new ArrayList<Position>();
+        for (int rank = 0; rank < 8; rank++) {
+            List<Piece> file = getBoardFileList(rank);
+            for (Piece piece : file) {
+                if(piece != null) {
+                    positions.add(piece.getPosition());
+                }
+            }
+        }
+
+        Collections.sort(positions);
+
+        // Alternative implementation of comparing the positions
+        // In this case Position doesn't need to implement the Compare interface
+        Collections.sort(positions, new Comparator<Position>() {
+
+            @Override
+            public int compare(Position position1, Position position2) {
+                int file = position1.getFile() - position2.getFile();
+                if(file == 0) {
+                    return position2.getRank() - position1.getRank();
+                }
+                return file;
+            }
+            
+        });
+        
+        return positions;
+
     }
 
 }

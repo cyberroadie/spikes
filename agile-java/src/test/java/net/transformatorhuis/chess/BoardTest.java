@@ -1,5 +1,6 @@
 package net.transformatorhuis.chess;
 
+import java.util.List;
 import net.transformatorhuis.chess.pieces.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,5 +89,11 @@ public class BoardTest {
             i++;
         }
     }
-   
+
+    @Test
+    public void testPositionOrder() {
+        List<Position> positions = board.getPositions();
+        assertEquals("a7", positions.get(0).toString());
+
+    }
 }
