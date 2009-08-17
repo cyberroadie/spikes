@@ -1,10 +1,11 @@
-package net.transformatorhuis.junit.agilejava;
+package net.transormatorhuis.junit.util;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import net.transformatorhuis.junit.agilejava.MyFile.MyDoesNotFileExistException;
+import net.transformtorhuis.junit.util.MyFile;
+import net.transformtorhuis.junit.util.MyFile.MyDoesNotFileExistException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * XOR is reversible
+ * XOR is reversible.
  * @author cyberroadie
  */
 public class XorReversableTest {

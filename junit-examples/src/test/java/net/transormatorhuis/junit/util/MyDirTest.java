@@ -1,13 +1,10 @@
-package net.transformatorhuis.junit.agilejava;
+package net.transormatorhuis.junit.util;
 
+import net.transformtorhuis.junit.util.MyFile;
 import java.io.File;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import net.transformatorhuis.junit.agilejava.MyDir.MyDirException;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import net.transformtorhuis.junit.util.MyDir;
+import net.transformtorhuis.junit.util.MyDir.MyDirException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

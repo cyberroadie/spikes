@@ -15,7 +15,7 @@
     <url>http://www.transformatorhuis.net</url>
 
     <prerequisites>
-        <maven>2.0.9</maven>
+        <maven>2.1.0</maven>
     </prerequisites>
 
     <licenses>
@@ -50,6 +50,7 @@
     </developers>
 
     <modules>
+        <module>checkstyle</module>
         <module>agile-java</module>
         <module>junit-examples</module>
     </modules>
@@ -64,8 +65,52 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <headerLocation>Licence.txt</headerLocation>
+                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+                    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+                <!--<outputDirectory>${project.build.directory}/artifacts/checkstyle</outputDirectory>-->
+                    <enableRSS>false</enableRSS>
+                    <linkXRef>false</linkXRef>
+                    <enableRulesSummary>false</enableRulesSummary>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>false</failsOnError>
+                    <failOnViolation>false</failOnViolation>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pre-test-check</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.transformatorhuis.checkstyle</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>1.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
-   </build>
+    </build>
 </project>
 
 

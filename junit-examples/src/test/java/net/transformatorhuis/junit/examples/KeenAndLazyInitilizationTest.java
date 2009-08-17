@@ -52,7 +52,7 @@ public class KeenAndLazyInitilizationTest {
         stop();
         System.out.println("Executing time lazy 1: " + timeToString());
     }
-    
+
     public void start() {
         start = System.currentTimeMillis(); // start timing
     }

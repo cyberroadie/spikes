@@ -1,4 +1,4 @@
-package net.transformatorhuis.junit.agilejava;
+package net.transformtorhuis.junit.util;
 
 import java.io.BufferedReader;
 import java.io.File;
