@@ -1,4 +1,4 @@
-package net.transformtorhuis.junit.util;
+package net.transformatorhuis.junit.util;
 
 import java.io.BufferedReader;
 import java.io.File;

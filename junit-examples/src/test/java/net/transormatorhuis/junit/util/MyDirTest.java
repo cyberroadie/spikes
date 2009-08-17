@@ -1,10 +1,10 @@
 package net.transormatorhuis.junit.util;
 
-import net.transformtorhuis.junit.util.MyFile;
+import net.transformatorhuis.junit.util.MyFile;
 import java.io.File;
 import java.util.List;
-import net.transformtorhuis.junit.util.MyDir;
-import net.transformtorhuis.junit.util.MyDir.MyDirException;
+import net.transformatorhuis.junit.util.MyDir;
+import net.transformatorhuis.junit.util.MyDir.MyDirException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
