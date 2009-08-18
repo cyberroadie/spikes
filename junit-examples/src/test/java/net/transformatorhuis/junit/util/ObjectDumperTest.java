@@ -1,5 +1,6 @@
-package net.transformtorhuis.junit.util;
+package net.transformatorhuis.junit.util;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,6 +19,7 @@ public class ObjectDumperTest {
     /**
      * Test of dumpObject method, of class ObjectDumper.
      */
+    @Ignore
     @Test
     public void testDumpObject() {
         String dump = ObjectDumper.dumpObject(this);

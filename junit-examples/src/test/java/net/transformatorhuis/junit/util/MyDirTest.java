@@ -1,4 +1,4 @@
-package net.transormatorhuis.junit.util;
+package net.transformatorhuis.junit.util;
 
 import net.transformatorhuis.junit.util.MyFile;
 import java.io.File;

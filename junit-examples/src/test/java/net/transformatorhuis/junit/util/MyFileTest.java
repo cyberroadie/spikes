@@ -1,4 +1,4 @@
-package net.transormatorhuis.junit.util;
+package net.transformatorhuis.junit.util;
 
 import java.io.File;
 import java.io.FileWriter;
