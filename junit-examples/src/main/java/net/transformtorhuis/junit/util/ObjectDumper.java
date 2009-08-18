@@ -1,6 +1,7 @@
 package net.transformtorhuis.junit.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 /**
  *
@@ -8,22 +9,31 @@ import java.lang.reflect.Field;
  */
 public class ObjectDumper {
 
+    static final int MAX_DEPTH = 2;
+    static int depth = 0;
+
     public static String dumpObject(Object object) {
         Class clazz = object.getClass();
-        return printFields(clazz.getFields(), "");
+        return printFields(clazz.getDeclaredFields(), "");
     }
 
     private static String printFields(Field[] fields, String prefix) {
+        depth++;
         StringBuilder sb = new StringBuilder();
         for (Field field : fields) {
-            String packageName = field.getType().getPackage().getName();
-            sb.append("Field: " + field.getName());
-            sb.append(" Object: " + field.getType().getSimpleName() + "\n");
-            if(!packageName.startsWith("javax.") || !packageName.startsWith("java.")) {
-                sb.append(printFields(field.getType().getFields(), "-" + prefix));
+            sb.append(prefix + "Field: " + field.getName());
+            sb.append(" Type: " + field.getType().getSimpleName());
+            if(Modifier.STATIC == field.getModifiers()) {
+                sb.append(" (static) ");
+            }
+            sb.append("\n");
+            Package aPackage = field.getType().getPackage();
+            if (aPackage != null && depth < MAX_DEPTH) {
+                if (!aPackage.getName().startsWith("javax.") || !aPackage.getName().startsWith("java.")) {
+                    sb.append(printFields(field.getType().getDeclaredFields(), "-" + prefix));
+                }
             }
         }
         return sb.toString();
     }
-    
 }

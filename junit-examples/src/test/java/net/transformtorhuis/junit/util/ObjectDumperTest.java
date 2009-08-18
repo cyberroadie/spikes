@@ -1,7 +1,5 @@
 package net.transformtorhuis.junit.util;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,7 +20,10 @@ public class ObjectDumperTest {
      */
     @Test
     public void testDumpObject() {
-        System.out.println(ObjectDumper.dumpObject(this));
+        String dump = ObjectDumper.dumpObject(this);
+        System.out.println(dump);
+        assertTrue(dump.startsWith("Field: test Type: int"));
+        assertTrue(dump.trim().endsWith("-Field: depth Type: int (static)"));
     }
 
 }
