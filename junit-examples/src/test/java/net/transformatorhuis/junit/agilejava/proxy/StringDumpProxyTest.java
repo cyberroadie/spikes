@@ -1,9 +1,5 @@
 package net.transformatorhuis.junit.agilejava.proxy;
 
-import net.transformatorhuis.junit.agilejava.proxy.StringDump;
-import net.transformatorhuis.junit.agilejava.proxy.StringDumpFactory;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
