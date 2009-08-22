@@ -1,6 +1,5 @@
 package net.transformatorhuis.junit.examples;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -11,6 +10,7 @@ import static org.junit.Assert.*;
  */
 public class CallbackTest {
 
+    // Local variable to sent a message to
     private int executionCounter = 0;
     private Callback callback;
     
