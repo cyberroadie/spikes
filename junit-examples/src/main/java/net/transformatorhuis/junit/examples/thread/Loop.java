@@ -19,7 +19,7 @@ public class Loop {
         for (int i = 0; i <= callback.getMaxLoop(); i++) {
             try {
                 callback.setProgress(i);
-                Thread.sleep(1);
+                Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Loop.class.getName()).log(Level.SEVERE, null, ex);
             }

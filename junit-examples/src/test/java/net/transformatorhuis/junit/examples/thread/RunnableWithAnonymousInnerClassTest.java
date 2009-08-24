@@ -1,8 +1,8 @@
 package net.transformatorhuis.junit.examples.thread;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.junit.After;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -10,8 +10,10 @@ import org.junit.Test;
  */
 public class RunnableWithAnonymousInnerClassTest {
 
-    private static int MAX_LOOP = 1000;
-    private int loopProgress;
+    private static int MAX_LOOP = 20;
+    private int loopProgress = 0;
+    private Object monitor = new Object();
+    private Thread server;
 
     public RunnableWithAnonymousInnerClassTest() {
     }
@@ -22,6 +24,20 @@ public class RunnableWithAnonymousInnerClassTest {
         synchronized(this) {
             this.loopProgress = progress;
         }
+
+        System.out.println("Progress: " + progress);
+        // Start test thread again
+        if (getLoopProgress() >= MAX_LOOP) {
+            System.out.println("Notify monitor");
+
+            // Have to get a lock on monitor object before
+            // we can send notifyAll message
+            synchronized(monitor) {
+                monitor.notifyAll();
+            }
+        }
+
+
     }
 
     public int getLoopProgress() {
@@ -32,7 +48,7 @@ public class RunnableWithAnonymousInnerClassTest {
      * Test of doLoop method, of class Loop.
      */
     @Test
-    public void testDoLoop() {
+    public void testDoLoop() throws InterruptedException {
 
         // Create loop with a callback
         final Loop loop = new Loop(new LoopCallback() {
@@ -49,7 +65,7 @@ public class RunnableWithAnonymousInnerClassTest {
         });
 
         // Create thread with Runnable anonymous inner class
-        Thread t1 = new Thread(new Runnable() {
+        server = new Thread(new Runnable() {
 
             @Override
             public void run() {
@@ -57,20 +73,16 @@ public class RunnableWithAnonymousInnerClassTest {
             }
         });
 
-        t1.start();
+        server.start();
 
-        int previousProgress = 0;
-        while (getLoopProgress() < MAX_LOOP) {
-            try {
-                if (getLoopProgress() > previousProgress) {
-                    System.out.println("Progress" + getLoopProgress());
-//                    System.out.print("*");
-                    previousProgress = getLoopProgress();
-                }
-                Thread.sleep(1);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(RunnableWithAnonymousInnerClassTest.class.getName()).log(Level.SEVERE, null, ex);
+        // Wait test thread
+        synchronized(monitor) {
+            if (getLoopProgress() < MAX_LOOP) {
+                // By putting it into wait all locks (synchronized) will be removed
+                // and this thread will be put in a rest state
+                monitor.wait();
             }
         }
+        
     }
 }
