@@ -4,8 +4,8 @@ package net.transformatorhuis.junit.agilejava.thread;
  *
  * @author cyberroadie
  */
-public interface Client {
+public interface AlarmClockClient {
 
-    public void triggerAlarm();
+    public void triggerAlarm(AlarmEvent alarmEvent);
 
 }

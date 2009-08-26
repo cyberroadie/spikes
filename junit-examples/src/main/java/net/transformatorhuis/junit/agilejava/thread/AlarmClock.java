@@ -7,20 +7,47 @@ import java.util.logging.Logger;
  *
  * @author cyberroadie
  */
-public class AlarmClock {
+public class AlarmClock extends Thread {
 
-    private Client client;
+    private AlarmClockClient client;
+    private AlarmEvent event = null;
+    private long timeout = 0;
+    private boolean alive = true;
+    private Object monitor = new Object();
 
-    public AlarmClock(Client client) {
+    public AlarmClock(AlarmClockClient client) {
         this.client = client;
     }
 
-    public void submitEvent(Event event, long timeout) {
-        try {
-            this.wait(timeout);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AlarmClock.class.getName()).log(Level.SEVERE, null, ex);
+    @Override
+    public void run() {
+        while (alive) {
+            try {
+                if (event == null) {
+                    sleep(100);
+                } else {
+                    System.out.println("Wait for alarm");
+                    synchronized(monitor) {
+                        monitor.wait(timeout);
+                    }
+                    client.triggerAlarm(event);
+                    event = null;
+                }
+            } catch (InterruptedException ex) {
+                if(!alive) {
+                    break;
+                }
+            }
         }
-        client.triggerAlarm();
+    }
+
+    public void shutdown() {
+        alive = false;
+        this.interrupt();
+    }
+
+    public void submitEvent(AlarmEvent event, long timeout) {
+        this.event = event;
+        this.timeout = timeout;
     }
 }
