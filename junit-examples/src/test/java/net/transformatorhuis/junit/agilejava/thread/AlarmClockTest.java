@@ -1,5 +1,6 @@
 package net.transformatorhuis.junit.agilejava.thread;
 
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -14,7 +15,8 @@ public class AlarmClockTest {
 
     String alarmMessage = null;
     AlarmClock alarmClock = null;
-    
+    Object monitor = new Object();
+
     public AlarmClockTest() {
     }
 
@@ -26,7 +28,6 @@ public class AlarmClockTest {
         assertFalse(alarmClock.isAlive());
     }
 
-
     /**
      * Test of submitEvent method, of class AlarmClock.
      */
@@ -34,10 +35,21 @@ public class AlarmClockTest {
     public void testSubmitEvent() throws InterruptedException {
         alarmClock = new AlarmClock(new Client());
         alarmClock.start();
-        
-        alarmClock.submitEvent(new Event("Alarm!"), 1000);
-        Thread.sleep(1200);
-        assertEquals("Alarm!", alarmMessage);
+
+        Date alarm2 = AlarmClock.now(2000);
+        alarmClock.setAlarm(new Event("Alarm1!"), AlarmClock.now(1000));
+        alarmClock.setAlarm(new Event("Alarm2!"), alarm2);
+        alarmClock.setAlarm(new Event("Alarm3!"), AlarmClock.now(3000));
+
+        synchronized (monitor) {
+            monitor.wait();
+        }
+        assertEquals("Alarm1!", alarmMessage);
+        alarmClock.deleteAlarm(alarm2);
+        synchronized (monitor) {
+            monitor.wait();
+        }
+        assertEquals("Alarm3!", alarmMessage);
 
     }
 
@@ -53,7 +65,6 @@ public class AlarmClockTest {
         public String doSomething() {
             return alarmMessage;
         }
-
     }
 
     public class Client implements AlarmClockClient {
@@ -61,8 +72,10 @@ public class AlarmClockTest {
         @Override
         public void triggerAlarm(AlarmEvent event) {
             alarmMessage = event.doSomething();
+            synchronized(monitor) {
+                monitor.notifyAll();
+            }
             System.out.println(alarmMessage);
         }
     }
-    
 }
