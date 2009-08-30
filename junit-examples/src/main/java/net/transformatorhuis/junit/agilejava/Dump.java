@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Dump {
     int order() default Integer.MAX_VALUE;
+    boolean quote() default false;
+    String[] outputMethod() default "toString";
 }
