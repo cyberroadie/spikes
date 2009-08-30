@@ -40,6 +40,7 @@ public class Ring<T> implements Iterable<T> {
     }
 
     public void add(T data) {
+        assert data != null : "data can not be null";
         RingNode ringNode = new RingNode(data);
         if(currentNode != null) {
             ringNode.setPreviousElement(currentNode);

@@ -76,6 +76,17 @@ public class RingTest {
     }
 
     @Test
+    public void addNull() {
+        try {
+            ring.add(null);
+            fail("AssertionError should be thrown");
+        } catch (AssertionError ex) {
+            System.out.println("Assertion error: " + ex.toString());
+        }
+    }
+
+
+    @Test
     public void testIterator() {
         List<String> testList = new ArrayList<String>();
         for (String string : ring) {
