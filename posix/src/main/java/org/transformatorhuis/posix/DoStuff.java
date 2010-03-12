@@ -10,22 +10,18 @@ import java.util.Observer;
 public class DoStuff implements Runnable, Observer {
 
     private boolean shutdown = false;
+    private String identifier;
     
-    public DoStuff() {
-
-    }
-
-    private void sendErrorMessage() {
-        System.err.println("Error message from server");
+    public DoStuff(String identifier) {
+        this.identifier = identifier;
     }
 
     private void sendMessage() {
-        System.out.println("Message from server");
+        System.out.println(identifier + "::Message from server");
     }
 
     public void run() {
         while(!shutdown) {
-            sendErrorMessage();
             sendMessage();
             try {
                 Thread.sleep(3000);
@@ -34,11 +30,12 @@ public class DoStuff implements Runnable, Observer {
                 System.exit(0);
             }
         }
-        System.out.println("End of program");
+        System.out.println(identifier+"::End of thread");
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        
+        System.out.println(identifier + "::TERM received");
+        shutdown = true;
     }
 }
